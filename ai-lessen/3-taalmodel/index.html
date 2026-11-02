@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Je eigen taalbot · AI-lessen</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="../stijl.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body>
+  <aside class="zijbalk">
+    <a class="merk" href="../index.html"><span class="logo">&lt;/&gt;</span>AI-LESSEN</a>
+    <div class="zij-kop">Projecten</div>
+    <nav>
+      <a href="../index.html">Overzicht</a>
+      <a href="../1-regels-en-buren/index.html">Project 1<small>Van regels naar leren</small></a>
+      <a href="../2-cnn/index.html">Project 2<small>Een eigen CNN</small></a>
+      <a href="../3-taalmodel/index.html" class="actief">Project 3<small>Je eigen taalbot</small></a>
+    </nav>
+    <div class="zij-kop">Bediening</div>
+    <div class="bediening">
+      <div class="toets"><kbd>Enter</kbd><span>zin laten afmaken</span></div>
+      <div class="toets"><kbd>Verras me</kbd><span>bot begint zelf</span></div>
+      <div class="toets"><kbd>schuif</kbd><span>context n</span></div>
+      <div class="toets"><kbd>suggestie</kbd><span>klik om toe te voegen</span></div>
+    </div>
+    <div class="voet">Informatica · Emmauscollege</div>
+  </aside>
+  <main>
+    <div class="topbalk"><a href="../index.html">AI-lessen</a> › Je eigen taalbot</div>
+    <div class="inhoud">
+      <span class="label">Project 3 · praktijkles 5 en 6</span>
+      <h1>Je eigen taalbot</h1>
+      <p class="intro">Je bot leest Wikipedia-artikelen over een onderwerp dat jij kiest, bijvoorbeeld wielrennen, en kijkt welk woord na welk woord komt. Daarmee maakt hij jouw zinnen af en voorspelt hij het volgende woord, net als het toetsenbord van je telefoon.</p>
+      <div class="tip">Zet bovenaan <code>sketch.js</code> de titels van jouw Wikipedia-artikelen in de lijst <code>artikelen</code>. Werk daarna STAP 1 tot en met 4 (les 1) en STAP 5 en 6 (les 2) af.</div>
+      <div id="sketch" class="kaart breed"></div>
+    </div>
+  </main>
+</body>
+</html>

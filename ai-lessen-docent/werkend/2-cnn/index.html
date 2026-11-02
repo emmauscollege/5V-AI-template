@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Een eigen CNN · AI-lessen</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="../stijl.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script src="sketch.js"></script>
+</head>
+<body>
+  <aside class="zijbalk">
+    <a class="merk" href="../index.html"><span class="logo">&lt;/&gt;</span>AI-LESSEN · DOCENT</a>
+    <div class="zij-kop">Projecten</div>
+    <nav>
+      <a href="../index.html">Overzicht</a>
+      <a href="../1-regels-en-buren/index.html">Project 1<small>Van regels naar leren</small></a>
+      <a href="../2-cnn/index.html" class="actief">Project 2<small>Een eigen CNN</small></a>
+      <a href="../3-taalmodel/index.html">Project 3<small>Je eigen taalbot</small></a>
+    </nav>
+    <div class="zij-kop">Bediening</div>
+    <div class="bediening">
+      <div class="toets"><kbd>1</kbd><span>deel 1: blur</span></div>
+      <div class="toets"><kbd>2</kbd><span>deel 1: randen verticaal</span></div>
+      <div class="toets"><kbd>3</kbd><span>deel 1: randen horizontaal</span></div>
+      <div class="toets"><kbd>4</kbd><span>deel 1: eigen filter</span></div>
+      <div class="toets"><kbd>F</kbd><span>deel 1: webcam / foto</span></div>
+      <div class="toets"><kbd>Train netwerk</kbd><span>deel 2: trainen</span></div>
+      <div class="toets"><kbd>Webcam</kbd><span>deel 2: cijfer voor camera</span></div>
+      <div class="toets"><kbd>Tekenen</kbd><span>deel 2: tekenen met muis</span></div>
+    </div>
+    <div class="voet">Informatica · Emmauscollege</div>
+  </aside>
+  <main>
+    <div class="topbalk"><a href="../index.html">AI-lessen</a> › Een eigen CNN</div>
+    <div class="inhoud">
+      <span class="label">Project 2 · praktijkles 3 en 4</span>
+      <h1>Een eigen CNN</h1>
+      <p class="intro">In deel 1 bouw je de bouwstenen van een convolutioneel neuraal netwerk (CNN): filters die over een beeld schuiven en pooling die het beeld verkleint. In deel 2 bouw je een netwerk dat handgeschreven cijfers herkent. Houd daarna een cijfer op papier voor je webcam: jouw eigen functies uit deel 1 maken het beeld klaar voor het netwerk.</p>
+      <div class="tip">Je programmeert in <code>sketch.js</code>. Deel 1 is STAP 1 tot en met 3, deel 2 is STAP 4 tot en met 6. Schrijf voor de webcam met een dikke zwarte stift op wit papier.</div>
+      <div id="sketch" class="kaart"></div>
+    </div>
+  </main>
+</body>
+</html>
