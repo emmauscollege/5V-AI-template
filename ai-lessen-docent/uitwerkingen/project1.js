@@ -1,30 +1,34 @@
 function voorspelRegels(x, y) {
-  // Eén mogelijke uitwerking voor 1b: N-leerlingen in een rondje rond (5, 5)
-  if (x > 3 && x < 7 && y > 3 && y < 7) {
+  // Eén mogelijke uitwerking: veel wiskunde en niet heel goed in Nederlands
+  if (x > 5.5 && y < 7) {
     return 1;
   }
   return -1;
 }
 
+// Tussenversie STAP 2a (k = 1):
+//
+// function voorspelKNN(x, y) {
+//   let kleinsteAfstand = 1000;
+//   let beste = 0;
+//   for (let i = 0; i < trainX.length; i++) {
+//     let afstand = dist(x, y, trainX[i], trainY[i]);
+//     if (afstand < kleinsteAfstand) {
+//       kleinsteAfstand = afstand;
+//       beste = i;
+//     }
+//   }
+//   return trainLabel[beste];
+// }
+//
+// Eindversie STAP 2b (k buren):
 function voorspelKNN(x, y) {
   let gebruikt = [];
   let som = 0;
   for (let keer = 0; keer < k; keer++) {
-    let kleinsteAfstand = 1000;
-    let beste = -1;
-    for (let i = 0; i < trainX.length; i++) {
-      if (gebruikt[i] !== true) {
-        let afstand = dist(x, y, trainX[i], trainY[i]);
-        if (afstand < kleinsteAfstand) {
-          kleinsteAfstand = afstand;
-          beste = i;
-        }
-      }
-    }
-    if (beste !== -1) {
-      gebruikt[beste] = true;
-      som = som + trainLabel[beste];
-    }
+    let i = zoekBuur(x, y, gebruikt);
+    gebruikt[i] = true;
+    som = som + trainLabel[i];
   }
   if (som > 0) {
     return 1;
@@ -70,4 +74,18 @@ function telGoedEnFout() {
       fn = fn + 1;
     }
   }
+}
+
+function perceptron(a, b, gewichtA, gewichtB, b0) {
+  if (gewichtA * a + gewichtB * b + b0 > 0) {
+    return 1;
+  }
+  return -1;
+}
+
+function voorspelTwee(x, y) {
+  let lijn1 = perceptron(x, y, 1, 0, -5);
+  let lijn2 = perceptron(x, y, 0, -1, 7);
+  let baas = perceptron(lijn1, lijn2, 1, 1, -1);
+  return baas;
 }
