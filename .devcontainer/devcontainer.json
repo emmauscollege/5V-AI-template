@@ -1,0 +1,32 @@
+{
+  "name": "AI-lessen",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["-GitHub.copilot", "-GitHub.copilot-chat"],
+      "settings": {
+        "chat.disableAIFeatures": true,
+        "chat.commandCenter.enabled": false,
+        "chat.agent.enabled": false,
+        "github.copilot.enable": { "*": false },
+        "github.copilot.nextEditSuggestions.enabled": false,
+        "editor.inlineSuggest.enabled": false
+      }
+    }
+  },
+
+  "forwardPorts": [
+    8080
+  ],
+
+  "portsAttributes": {
+    "8080": {
+      "label": "Webserver",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  "postCreateCommand": "npm install -g serve",
+  "postStartCommand": "serve . -l 8080"
+}
