@@ -28,5 +28,5 @@
   },
 
   "postCreateCommand": "npm install -g serve",
-  "postStartCommand": "serve . -l 8080"
+  "postStartCommand": "serve . -l 8080 -c .devcontainer/serve.json"
 }
