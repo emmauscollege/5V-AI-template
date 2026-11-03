@@ -2,18 +2,16 @@
 // Project 1 – Van regels naar leren
 //
 // Kun je aan iemands cijfers zien welk profiel hij heeft?
+// Lees eerst de uitleg op de webpagina: wat een N- en M-profiel is,
+// waarom we wiskunde en Nederlands gebruiken en waar de data vandaan komt.
 //
-// Elke stip is een leerling:
-//   x = gemiddeld cijfer wiskunde (A of B)
-//   y = gemiddeld cijfer Nederlands
-//   label = 1 voor een N-profiel (NT of NG): veel wiskunde, weinig talen
-//           -1 voor een M-profiel (EM of CM): minder wiskunde, meer talen
-//
+// DE DATA IN DE CODE
 // De leerlingen staan in lijsten (onderaan dit bestand):
-//   trainX, trainY, trainLabel: hiervan leert het model (90%)
-//   testX, testY, testLabel:    hiermee testen we het model (10%)
+//   trainWIS, trainNETL, trainProfiel: hiervan leert het model (90%)
+//   testWIS, testNETL, testProfiel:    hiermee testen we het model (10%)
 // Op dezelfde plek in de lijsten staat dezelfde leerling. Leerling 0
-// heeft dus wiskunde trainX[0], Nederlands trainY[0] en profiel trainLabel[0].
+// heeft dus wiskunde trainWIS[0], Nederlands trainNETL[0] en
+// profiel trainProfiel[0].
 //
 // Volle stippen zijn trainleerlingen, open rondjes testleerlingen.
 // Je kunt zelf testleerlingen toevoegen: jezelf en een paar
@@ -29,9 +27,10 @@
 // Kijk eerst goed naar de stippen. Waar zitten de N-leerlingen (blauw)
 // en waar de M-leerlingen (oranje)?
 //
-// De functie hieronder krijgt de cijfers van één leerling:
-// x (wiskunde) en y (Nederlands). Hij geeft 1 terug voor N en -1 voor M.
-// Nu staat er één regel: wie hoger dan een 6 haalt voor wiskunde, krijgt N.
+// De functie hieronder krijgt de cijfers van één leerling: wis en netl.
+// Hij geeft N_PROFIEL of M_PROFIEL terug.
+// Nu staat er één regel: wie hoger dan een 6 haalt voor wiskunde,
+// krijgt een N-profiel.
 //
 // STAP 1a – Verbeter de regel. Probeer een andere grens dan 6.
 //           Kijk na elke wijziging naar de achtergrondkleur en de accuracy.
@@ -47,11 +46,11 @@
 // voor iedereen kloppen. Daarom laten we de computer in de volgende
 // stappen zelf leren van de voorbeelden.
 // -------------------------------------------------------------
-function voorspelRegels(x, y) {
-  if (x > 6) {
-    return 1;
+function voorspelRegels(wis, netl) {
+  if (wis > 6) {
+    return N_PROFIEL;
   }
-  return -1;
+  return M_PROFIEL;
 }
 
 // =============================================================
@@ -61,25 +60,25 @@ function voorspelRegels(x, y) {
 // als de leerlingen met cijfers die erop lijken. Die liggen in de
 // grafiek dicht bij hem in de buurt.
 //
-// De afstand van (x, y) tot trainleerling i krijg je met:
-//   dist(x, y, trainX[i], trainY[i])
+// De afstand van (wis, netl) tot trainleerling i krijg je met:
+//   dist(wis, netl, trainWIS[i], trainNETL[i])
 //
 // STAP 2a – Eén buur (k = 1)
-//   Zoek de trainleerling die het dichtst bij (x, y) ligt en geef zijn
-//   label terug. Je zoekt dus de kleinste afstand, net zoals je het
-//   kleinste getal in een lijst zoekt. Gebruik dit raamwerk en vul de
-//   puntjes in:
+//   Zoek de trainleerling die het dichtst bij (wis, netl) ligt en geef
+//   zijn profiel terug. Je zoekt dus de kleinste afstand, net zoals je
+//   het kleinste getal in een lijst zoekt. Gebruik dit raamwerk en vul
+//   de puntjes in:
 //
 //     let kleinsteAfstand = 1000;
 //     let beste = 0;
-//     for (let i = 0; i < trainX.length; i++) {
+//     for (let i = 0; i < trainWIS.length; i++) {
 //       let afstand = ...;        // de afstand tot leerling i
 //       if (...) {                // is leerling i dichterbij dan de beste tot nu toe?
 //         ...                     // onthoud de nieuwe kleinste afstand
 //         ...                     // onthoud het nummer van deze leerling
 //       }
 //     }
-//     return ...;                 // het label van de dichtstbijzijnde leerling
+//     return ...;                 // het profiel van de dichtstbijzijnde leerling
 //
 //   Denk na: waarom begint kleinsteAfstand op 1000?
 //   Test: druk op 2. Elk vlakje krijgt de kleur van de dichtstbijzijnde
@@ -88,25 +87,25 @@ function voorspelRegels(x, y) {
 // STAP 2b – k buren
 //   Eén buur kan net een uitzondering zijn. Daarom laten we k buren
 //   stemmen. Onderaan dit bestand (bij de hulpfuncties) staat de functie
-//   zoekBuur(x, y, gebruikt). Die doet hetzelfde als jouw code van 2a,
-//   maar slaat leerlingen over die al gekozen zijn. Hij geeft het NUMMER
-//   van de dichtstbijzijnde leerling terug (niet het label).
+//   zoekBuur(wis, netl, gebruikt). Die doet hetzelfde als jouw code van
+//   2a, maar slaat leerlingen over die al gekozen zijn. Hij geeft het
+//   NUMMER van de dichtstbijzijnde leerling terug (niet het profiel).
 //   Vervang je code van 2a door dit, en vul de ___ in:
 //
 //     let gebruikt = [];
 //     let som = 0;
 //     for (let keer = 0; keer < k; keer++) {
-//       let i = zoekBuur(x, y, gebruikt);
+//       let i = zoekBuur(wis, netl, gebruikt);
 //       gebruikt[i] = true;      // deze leerling niet nog een keer kiezen
-//       som = som + ___;         // tel het label van leerling i op
+//       som = som + ___;         // tel het profiel van leerling i op
 //     }
 //     if (___) {
-//       return 1;
+//       return N_PROFIEL;
 //     }
-//     return -1;
+//     return M_PROFIEL;
 //
-//   Tip: de labels zijn 1 (N) en -1 (M). Wat weet je als de som
-//   positief is?
+//   Tip: onderaan dit bestand zie je dat N_PROFIEL eigenlijk het getal 1
+//   is en M_PROFIEL het getal -1. Wat weet je als de som positief is?
 //   Test: verander k met + en -. Bij welke k is de accuracy het hoogst?
 //
 // UITLEG – Wat heb je gemaakt?
@@ -120,48 +119,50 @@ function voorspelRegels(x, y) {
 // -------------------------------------------------------------
 let k = 3;
 
-function voorspelKNN(x, y) {
-  return 1; // vervang dit door jouw code
+function voorspelKNN(wis, netl) {
+  return N_PROFIEL; // vervang dit door jouw code
 }
 
 // =============================================================
 // STAP 3 – Perceptron
 // =============================================================
 // Een perceptron rekent een som uit:
-//   som = gewichtX * wiskunde + gewichtY * Nederlands + bias
-// Is de som groter dan 0, dan zegt hij N. Anders M.
+//   som = gewichtWIS * wis + gewichtNETL * netl + bias
+// Is de som groter dan 0, dan zegt hij N_PROFIEL. Anders M_PROFIEL.
 // Alle punten waar de som precies 0 is, vormen een rechte lijn.
 // Dat is de grens tussen N en M. Met de gewichten bepaal je hoe
 // schuin die lijn staat, met de bias waar hij ligt.
-let gewichtX = 0;
-let gewichtY = 0;
+let gewichtWIS = 0;
+let gewichtNETL = 0;
 let bias = 0;
 //
 // STAP 3a – voorspelPerceptron
-//   Bereken de som zoals hierboven. Geef 1 terug als de som groter is
-//   dan 0, anders -1.
-//   Test: zet bovenaan gewichtX = 1 en bias = -6. Druk op 3.
+//   Bereken de som zoals hierboven. Geef N_PROFIEL terug als de som
+//   groter is dan 0, anders M_PROFIEL.
+//   Test: zet bovenaan gewichtWIS = 1 en bias = -6. Druk op 3.
 //   Waar ligt de grens nu? Waarom precies daar?
-//   Probeer ook gewichtY = -1. Zet daarna alles weer op 0.
+//   Probeer ook gewichtNETL = -1. Zet daarna alles weer op 0.
 //
 // STAP 3b – leerStap
 //   Nu gaat de perceptron de gewichten zelf zoeken. Hij bekijkt alle
 //   trainleerlingen één voor één. Bij elke leerling vraagt hij zijn
-//   eigen voorspelling en vergelijkt die met het echte label:
-//     fout = echte label - voorspelling
-//   Klopt de voorspelling, dan is de fout 0. Zit hij ernaast, dan is de
-//   fout 2 of -2. Met die fout schuift hij de gewichten een klein stukje.
+//   eigen voorspelling en vergelijkt die met het echte profiel:
+//     fout = echte profiel - voorspelling
+//   Omdat N_PROFIEL 1 is en M_PROFIEL -1, is de fout 0 als de
+//   voorspelling klopt, en 2 of -2 als hij ernaast zit. Met die fout
+//   schuift hij de gewichten een klein stukje.
 //   Gebruik dit raamwerk en vul de puntjes in:
 //
-//     for (let i = 0; i < trainX.length; i++) {
+//     for (let i = 0; i < trainWIS.length; i++) {
 //       let voorspelling = ...;      // wat zegt je perceptron over leerling i?
 //       let fout = ...;
-//       gewichtX = gewichtX + 0.01 * fout * trainX[i];
-//       gewichtY = ...;              // net als gewichtX, maar dan met Nederlands
+//       gewichtWIS = gewichtWIS + 0.01 * fout * trainWIS[i];
+//       gewichtNETL = ...;           // net als gewichtWIS, maar dan met Nederlands
 //       bias = bias + 0.01 * fout;
 //     }
 //
 //   Test: druk op 3 en daarna op spatie. Kijk hoe de grens beweegt.
+//   Druk nog een keer op spatie om te stoppen.
 //
 // UITLEG – Wat heb je gemaakt?
 // Je hebt een perceptron gemaakt die leert van zijn fouten. Elke keer
@@ -170,9 +171,10 @@ let bias = 0;
 // meeste leerlingen aan de goede kant liggen. Het getal 0.01 is de
 // leersnelheid (learning rate): hoe groot elk stapje is.
 // Kijk goed: komt de lijn ooit helemaal stil te liggen? Waarom niet?
+// En waarom gebruiken we na het leren de beste lijn die hij vond?
 // -------------------------------------------------------------
-function voorspelPerceptron(x, y) {
-  return 1; // vervang dit door jouw code
+function voorspelPerceptron(wis, netl) {
+  return N_PROFIEL; // vervang dit door jouw code
 }
 
 function leerStap() {
@@ -210,10 +212,10 @@ let fn = 0;
 //           gebeuren als je dat vergeet?)
 // STAP 4b – Maak een for-loop langs alle testleerlingen. Vraag voor
 //           elke leerling wat het model voorspelt:
-//             let voorspelling = voorspel(testX[i], testY[i]);
+//             let voorspelling = voorspel(testWIS[i], testNETL[i]);
 //           (voorspel gebruikt de methode die nu aan staat.)
 // STAP 4c – Tel met vier if's bij de goede teller 1 op. De eerste:
-//             if (voorspelling === 1 && testLabel[i] === 1) {
+//             if (voorspelling === N_PROFIEL && testProfiel[i] === N_PROFIEL) {
 //               tp = tp + 1;
 //             }
 //           Bedenk de andere drie zelf met de tabel hierboven.
@@ -241,22 +243,23 @@ function telGoedEnFout() {
 // STAP 5a – Een algemene perceptron
 //   Schrijf de functie perceptron(a, b, gewichtA, gewichtB, b0).
 //   Hij doet hetzelfde als je voorspelPerceptron uit 3a, maar krijgt
-//   de gewichten en de bias (b0) mee als parameters.
+//   de invoer (a en b), de gewichten en de bias (b0) mee als parameters.
 //
 // STAP 5b – Twee lijnen en een baas
 //   In voorspelTwee hieronder staan twee perceptrons die naar de
 //   cijfers kijken:
-//     lijn1: "is wiskunde hoger dan 5?"     (1 * x - 5 > 0)
-//     lijn2: "is Nederlands lager dan 7?"   (-1 * y + 7 > 0)
+//     lijn1: "is wiskunde hoger dan 5?"     (1 * wis - 5 > 0)
+//     lijn2: "is Nederlands lager dan 7?"   (-1 * netl + 7 > 0)
 //   Daarna komt een derde perceptron: de baas. Die krijgt de antwoorden
-//   van lijn1 en lijn2 (allebei 1 of -1) en beslist.
+//   van lijn1 en lijn2 (allebei N_PROFIEL of M_PROFIEL, dus 1 of -1)
+//   en beslist.
 //   Druk op 4. De grijze lijnen zijn lijn1 en lijn2.
 //   Vul de ___ bij de baas in, zodat hij alleen N zegt als lijn1 EN
-//   lijn2 allebei 1 zeggen.
-//   Tip: maak een tabel met de vier combinaties van lijn1 en lijn2.
-//   Reken voor elke combinatie 1 * lijn1 + 1 * lijn2 uit. Welk getal
-//   moet je erbij optellen zodat alleen de combinatie 1 en 1 boven 0
-//   uitkomt?
+//   lijn2 allebei N zeggen.
+//   Tip: maak een tabel met de vier combinaties van lijn1 en lijn2
+//   (1 of -1). Reken voor elke combinatie 1 * lijn1 + 1 * lijn2 uit.
+//   Welk getal moet je erbij optellen zodat alleen de combinatie 1 en 1
+//   boven 0 uitkomt?
 //
 // STAP 5c – Verschuif de lijnen
 //   Verander de getallen van lijn1 en lijn2 tot het gebied zo goed
@@ -276,12 +279,12 @@ function telGoedEnFout() {
 // duizenden tot miljarden perceptrons.
 // -------------------------------------------------------------
 function perceptron(a, b, gewichtA, gewichtB, b0) {
-  return 1; // vervang dit door jouw code
+  return N_PROFIEL; // vervang dit door jouw code
 }
 
-function voorspelTwee(x, y) {
-  let lijn1 = perceptron(x, y, 1, 0, -5);
-  let lijn2 = perceptron(x, y, 0, -1, 7);
+function voorspelTwee(wis, netl) {
+  let lijn1 = perceptron(wis, netl, 1, 0, -5);
+  let lijn2 = perceptron(wis, netl, 0, -1, 7);
   let baas = perceptron(lijn1, lijn2, 1, 1, ___);
   return baas;
 }
@@ -290,51 +293,67 @@ function voorspelTwee(x, y) {
 // Hieronder hoef je niets te veranderen
 // =============================================================
 
+// ---------- Profielen ----------
+// Een profiel is eigenlijk gewoon een getal. Daardoor kun je er mee
+// rekenen, bijvoorbeeld optellen bij k-NN.
+const N_PROFIEL = 1;
+const M_PROFIEL = -1;
+
 // ---------- Data ----------
 
 // Trainingsdata: 72 leerlingen (36 N en 36 M). Hiervan leert het model.
-let trainX = [
+// Op dezelfde plek in de drie lijsten staat dezelfde leerling.
+let trainWIS = [
   8.5, 5.4, 9.2, 6.1, 5.3, 7.3, 6.4, 6.8, 6.0, 8.3, 5.0, 6.9, 5.7, 5.7, 5.6, 5.2,
   5.4, 5.5, 7.7, 5.7, 5.2, 5.2, 7.7, 6.5, 5.9, 5.0, 4.3, 6.7, 5.2, 7.4, 6.8, 6.4,
   6.3, 8.6, 8.0, 6.2, 8.6, 6.8, 6.0, 5.2, 7.8, 4.0, 6.5, 6.7, 5.6, 7.3, 7.2, 7.1,
   8.7, 7.4, 6.4, 7.0, 3.9, 4.1, 7.3, 4.7, 6.8, 5.6, 9.2, 6.1, 5.9, 6.7, 5.6, 8.0,
   5.2, 4.6, 6.9, 5.0, 7.8, 5.5, 6.4, 4.9,
 ];
-let trainY = [
+let trainNETL = [
   7.7, 7.8, 6.6, 5.1, 6.3, 6.1, 6.7, 7.4, 6.7, 7.6, 3.6, 6.2, 7.9, 6.8, 6.9, 6.3,
   5.4, 6.0, 7.5, 5.9, 5.3, 5.8, 7.0, 5.8, 7.2, 7.2, 6.0, 5.4, 6.8, 7.1, 6.2, 7.4,
   3.7, 6.8, 4.7, 6.5, 5.2, 5.7, 5.7, 6.7, 7.9, 6.0, 7.5, 4.7, 6.4, 6.8, 9.0, 7.1,
   7.3, 7.1, 5.0, 4.3, 8.0, 6.6, 6.3, 6.9, 4.8, 5.5, 7.8, 5.9, 6.9, 7.7, 6.1, 7.6,
   5.8, 7.5, 7.0, 9.5, 5.2, 7.4, 5.5, 6.4,
 ];
-let trainLabel = [
-  1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, -1, -1, -1, 1, -1,
-  1, -1, 1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1,
-  1, 1, 1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, -1,
-  1, -1, 1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1,
+let trainProfiel = [
+  N_PROFIEL, M_PROFIEL, M_PROFIEL, N_PROFIEL, M_PROFIEL, N_PROFIEL,
+  M_PROFIEL, M_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL,
+  M_PROFIEL, M_PROFIEL, M_PROFIEL, M_PROFIEL, N_PROFIEL, M_PROFIEL,
+  N_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL,
+  M_PROFIEL, M_PROFIEL, N_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL,
+  M_PROFIEL, N_PROFIEL, N_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL,
+  N_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL,
+  M_PROFIEL, N_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL,
+  N_PROFIEL, N_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL, M_PROFIEL,
+  N_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL,
+  M_PROFIEL, M_PROFIEL, M_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL,
+  M_PROFIEL, M_PROFIEL, N_PROFIEL, M_PROFIEL, M_PROFIEL, M_PROFIEL,
 ];
 
 // Testdata: 8 leerlingen (4 N en 4 M). Het model ziet deze leerlingen niet
 // tijdens het leren. Jouw eigen testpunten (N en M) komen hier achteraan bij.
-let testX = [
+let testWIS = [
   7.0, 7.9, 7.8, 6.5, 7.8, 8.4, 4.3, 7.4,
 ];
-let testY = [
+let testNETL = [
   6.7, 8.0, 5.4, 6.8, 9.0, 4.3, 6.6, 5.4,
 ];
-let testLabel = [
-  -1, 1, 1, -1, -1, 1, -1, 1,
+let testProfiel = [
+  M_PROFIEL, N_PROFIEL, N_PROFIEL, M_PROFIEL, M_PROFIEL, N_PROFIEL,
+  M_PROFIEL, N_PROFIEL,
 ];
 
 // ---------- Hulpfuncties ----------
 
 // Voor STAP 2b: geeft het nummer van de dichtstbijzijnde trainleerling
 // die nog niet gebruikt is.
-function zoekBuur(x, y, gebruikt) {
+function zoekBuur(wis, netl, gebruikt) {
   let kleinsteAfstand = 1000;
   let beste = 0;
-  for (let i = 0; i < trainX.length; i++) {
-    let afstand = dist(x, y, trainX[i], trainY[i]);
+  for (let i = 0; i < trainWIS.length; i++) {
+    let afstand = dist(wis, netl, trainWIS[i], trainNETL[i]);
     if (gebruikt[i] !== true && afstand < kleinsteAfstand) {
       kleinsteAfstand = afstand;
       beste = i;
@@ -355,12 +374,15 @@ let aantalVasteTest;
 function setup() {
   createCanvas(500, 500).parent("sketch");
   textFont("Work Sans");
-  aantalVasteTest = testX.length;
+  aantalVasteTest = testWIS.length;
   net = maakNetwerk(neuronen);
 }
 
 function draw() {
-  if (leren && methode === "perceptron") leerStap();
+  if (leren && methode === "perceptron") {
+    leerStap();
+    onthoudBesteLijn();
+  }
   if (leren && methode === "netwerk") {
     for (let i = 0; i < 10; i++) netLeerStap();
   }
@@ -368,35 +390,52 @@ function draw() {
   tekenAssen();
   if (methode === "twee") tekenTweeLijnen();
   if (methode === "netwerk") tekenNeuronLijnen();
-  tekenPunten(trainX, trainY, trainLabel, false);
-  tekenPunten(testX, testY, testLabel, true);
+  tekenPunten(trainWIS, trainNETL, trainProfiel, false);
+  tekenPunten(testWIS, testNETL, testProfiel, true);
   tekenInfo();
 }
 
-function voorspel(x, y) {
-  if (methode === "regels") return voorspelRegels(x, y);
-  if (methode === "knn") return voorspelKNN(x, y);
-  if (methode === "perceptron") return voorspelPerceptron(x, y);
-  if (methode === "twee") return voorspelTwee(x, y);
-  return voorspelNetwerk(x, y);
+function voorspel(wis, netl) {
+  if (methode === "regels") return voorspelRegels(wis, netl);
+  if (methode === "knn") return voorspelKNN(wis, netl);
+  if (methode === "perceptron") return voorspelPerceptron(wis, netl);
+  if (methode === "twee") return voorspelTwee(wis, netl);
+  return voorspelNetwerk(wis, netl);
+}
+
+// Onthoudt de lijn die tot nu toe de meeste trainleerlingen goed heeft.
+// Bij data die niet met één rechte lijn te scheiden is, blijft de
+// perceptron springen. Daarom gebruiken we na het leren de beste lijn.
+let besteScore = -1;
+let besteGewichten = [0, 0, 0];
+
+function onthoudBesteLijn() {
+  let goed = 0;
+  for (let i = 0; i < trainWIS.length; i++) {
+    if (voorspelPerceptron(trainWIS[i], trainNETL[i]) === trainProfiel[i]) goed++;
+  }
+  if (goed > besteScore) {
+    besteScore = goed;
+    besteGewichten = [gewichtWIS, gewichtNETL, bias];
+  }
 }
 
 // Telt hoeveel testleerlingen goed voorspeld worden
 function aantalGoed() {
   let goed = 0;
-  for (let i = 0; i < testX.length; i++) {
-    if (voorspel(testX[i], testY[i]) === testLabel[i]) goed++;
+  for (let i = 0; i < testWIS.length; i++) {
+    if (voorspel(testWIS[i], testNETL[i]) === testProfiel[i]) goed++;
   }
   return goed;
 }
 
 // Scherm (pixels) <-> cijfers (1 t/m 10)
 function naarCijfer(px, py) {
-  return { x: 1 + (px / width) * 9, y: 1 + ((height - py) / height) * 9 };
+  return { wis: 1 + (px / width) * 9, netl: 1 + ((height - py) / height) * 9 };
 }
 
-function naarScherm(x, y) {
-  return { x: ((x - 1) / 9) * width, y: height - ((y - 1) / 9) * height };
+function naarScherm(wis, netl) {
+  return { x: ((wis - 1) / 9) * width, y: height - ((netl - 1) / 9) * height };
 }
 
 function tekenBeslisgrens() {
@@ -404,7 +443,7 @@ function tekenBeslisgrens() {
   for (let px = 0; px < width; px += 10) {
     for (let py = 0; py < height; py += 10) {
       let c = naarCijfer(px + 5, py + 5);
-      if (voorspel(c.x, c.y) === 1) fill(214, 224, 247);
+      if (voorspel(c.wis, c.netl) === N_PROFIEL) fill(214, 224, 247);
       else fill(250, 228, 200);
       rect(px, py, 10, 10);
     }
@@ -423,9 +462,9 @@ function tekenAssen() {
   fill(60);
   textSize(12);
   textAlign(RIGHT, BOTTOM);
-  text("cijfer wiskunde →", width - 8, height - 20);
+  text("WIS: cijfer wiskunde →", width - 8, height - 20);
   textAlign(LEFT, TOP);
-  text("↑ cijfer Nederlands", 22, 136);
+  text("↑ NETL: cijfer Nederlands", 22, 136);
   for (let i = 2; i <= 9; i++) {
     let s = naarScherm(i, i);
     text(i, s.x + 3, height - 16);
@@ -433,12 +472,12 @@ function tekenAssen() {
   }
 }
 
-function tekenPunten(xs, ys, labels, isTest) {
+function tekenPunten(wissen, netls, profielen, isTest) {
   textAlign(CENTER, CENTER);
   textSize(10);
-  for (let i = 0; i < xs.length; i++) {
-    let s = naarScherm(xs[i], ys[i]);
-    let kleur = labels[i] === 1 ? N_KLEUR : M_KLEUR;
+  for (let i = 0; i < wissen.length; i++) {
+    let s = naarScherm(wissen[i], netls[i]);
+    let kleur = profielen[i] === N_PROFIEL ? N_KLEUR : M_KLEUR;
     if (isTest) {
       fill(255);
       stroke(kleur);
@@ -446,7 +485,7 @@ function tekenPunten(xs, ys, labels, isTest) {
       circle(s.x, s.y, 18);
       noStroke();
       fill(kleur);
-      text(labels[i] === 1 ? "N" : "M", s.x, s.y + 1);
+      text(profielen[i] === N_PROFIEL ? "N" : "M", s.x, s.y + 1);
     } else {
       fill(kleur);
       noStroke();
@@ -464,10 +503,11 @@ function tekenInfo() {
   if (methode === "netwerk") regels[0] += "   lijnen = " + neuronen;
   if (methode === "perceptron" || methode === "netwerk") regels[0] += leren ? "   (leert)" : "   (spatie = leren)";
   if (methode === "twee") regels[0] += "   (lijnen zelf instellen)";
-  regels.push("accuracy: " + nf((100 * goed) / testX.length, 0, 1) + "%   (" + goed + " van " + testX.length + " testleerlingen goed)");
+  regels.push("accuracy: " + nf((100 * goed) / testWIS.length, 0, 1) + "%   (" + goed + " van " + testWIS.length + " testleerlingen goed)");
   if (tp + fp + tn + fn > 0) regels.push("TP " + tp + "   FP " + fp + "   TN " + tn + "   FN " + fn);
   else regels.push("TP, FP, TN en FN: nog niet geteld (STAP 4)");
-  regels.push("eigen testpunten: " + (testX.length - aantalVasteTest) + "   (N / M zetten, Z = terug)");
+  if (methode === "perceptron" && besteScore >= 0) regels.push("beste lijn tot nu toe: " + besteScore + " van " + trainWIS.length + " trainleerlingen goed");
+  regels.push("eigen testpunten: " + (testWIS.length - aantalVasteTest) + "   (N / M zetten, Z = terug)");
 
   noStroke();
   fill(255, 225);
@@ -483,14 +523,14 @@ function keyPressed() {
   if (toets === "n" || toets === "m") {
     if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
     let c = naarCijfer(mouseX, mouseY);
-    testX.push(c.x);
-    testY.push(c.y);
-    testLabel.push(toets === "n" ? 1 : -1);
+    testWIS.push(c.wis);
+    testNETL.push(c.netl);
+    testProfiel.push(toets === "n" ? N_PROFIEL : M_PROFIEL);
   }
-  if (toets === "z" && testX.length > aantalVasteTest) {
-    testX.pop();
-    testY.pop();
-    testLabel.pop();
+  if (toets === "z" && testWIS.length > aantalVasteTest) {
+    testWIS.pop();
+    testNETL.pop();
+    testProfiel.pop();
   }
   if (key === "1") methode = "regels";
   if (key === "2") methode = "knn";
@@ -499,7 +539,7 @@ function keyPressed() {
   if (key === "5") methode = "netwerk";
   if (key === "+" || key === "=") {
     if (methode === "netwerk") nieuwNetwerk(neuronen + 1);
-    else if (k < trainX.length) k++;
+    else if (k < trainWIS.length) k++;
   }
   if (key === "-") {
     if (methode === "netwerk" && neuronen > 1) nieuwNetwerk(neuronen - 1);
@@ -507,15 +547,22 @@ function keyPressed() {
   }
   if (key === " ") {
     leren = !leren;
+    // Stopt het leren? Dan gaat de perceptron terug naar de beste lijn
+    if (!leren && methode === "perceptron" && besteScore >= 0) {
+      gewichtWIS = besteGewichten[0];
+      gewichtNETL = besteGewichten[1];
+      bias = besteGewichten[2];
+    }
     return false;
   }
   if (toets === "r") {
-    testX.length = aantalVasteTest;
-    testY.length = aantalVasteTest;
-    testLabel.length = aantalVasteTest;
-    gewichtX = 0;
-    gewichtY = 0;
+    testWIS.length = aantalVasteTest;
+    testNETL.length = aantalVasteTest;
+    testProfiel.length = aantalVasteTest;
+    gewichtWIS = 0;
+    gewichtNETL = 0;
     bias = 0;
+    besteScore = -1;
     nieuwNetwerk(neuronen);
   }
 }
@@ -523,7 +570,7 @@ function keyPressed() {
 // Tekent de lijnen van lijn1 en lijn2 uit voorspelTwee
 function tekenTweeLijnen() {
   let bron = voorspelTwee.toString();
-  let gevonden = [...bron.matchAll(/perceptron\(\s*x\s*,\s*y\s*,([^,]+),([^,]+),([^)]+)\)/g)];
+  let gevonden = [...bron.matchAll(/perceptron\(\s*wis\s*,\s*netl\s*,([^,]+),([^,]+),([^)]+)\)/g)];
   stroke(0, 110);
   strokeWeight(2);
   for (let g of gevonden) {
@@ -533,13 +580,13 @@ function tekenTweeLijnen() {
   }
 }
 
-// Tekent de lijn gA * x + gB * y + b0 = 0
+// Tekent de lijn gA * wis + gB * netl + b0 = 0
 function tekenLijn(gA, gB, b0) {
   let p;
-  if (abs(gB) > abs(gA)) p = [0, 11].map((x) => [x, -(gA * x + b0) / gB]);
-  else if (gA !== 0) p = [0, 11].map((y) => [-(gB * y + b0) / gA, y]);
+  if (abs(gB) > abs(gA)) p = [0, 11].map((w) => [w, -(gA * w + b0) / gB]);
+  else if (gA !== 0) p = [0, 11].map((n) => [-(gB * n + b0) / gA, n]);
   else return;
-  let s = p.map(([x, y]) => naarScherm(x, y));
+  let s = p.map(([w, n]) => naarScherm(w, n));
   line(s[0].x, s[0].y, s[1].x, s[1].y);
 }
 
@@ -558,23 +605,23 @@ function maakNetwerk(aantal) {
   };
 }
 
-function netVooruit(x, y) {
-  let a = [(x - 5.5) / 4.5, (y - 5.5) / 4.5];
+function netVooruit(wis, netl) {
+  let a = [(wis - 5.5) / 4.5, (netl - 5.5) / 4.5];
   let h = net.w1.map((v) => Math.tanh(v[0] * a[0] + v[1] * a[1] + v[2]));
   let z = net.w2[h.length];
   for (let j = 0; j < h.length; j++) z += net.w2[j] * h[j];
   return { a, h, o: 1 / (1 + Math.exp(-z)) };
 }
 
-function voorspelNetwerk(x, y) {
-  return netVooruit(x, y).o > 0.5 ? 1 : -1;
+function voorspelNetwerk(wis, netl) {
+  return netVooruit(wis, netl).o > 0.5 ? N_PROFIEL : M_PROFIEL;
 }
 
 // Backpropagation: de fout wordt teruggerekend naar elk gewicht
 function netLeerStap() {
-  for (let i = 0; i < trainX.length; i++) {
-    let { a, h, o } = netVooruit(trainX[i], trainY[i]);
-    let d = o - (trainLabel[i] === 1 ? 1 : 0);
+  for (let i = 0; i < trainWIS.length; i++) {
+    let { a, h, o } = netVooruit(trainWIS[i], trainNETL[i]);
+    let d = o - (trainProfiel[i] === N_PROFIEL ? 1 : 0);
     for (let j = 0; j < h.length; j++) {
       let dh = d * net.w2[j] * (1 - h[j] * h[j]);
       net.w2[j] -= 0.1 * d * h[j];

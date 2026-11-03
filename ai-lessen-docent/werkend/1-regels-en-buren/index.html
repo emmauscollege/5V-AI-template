@@ -24,17 +24,17 @@
     </nav>
     <div class="zij-kop">Bediening</div>
     <div class="bediening">
-      <div class="toets"><kbd>N</kbd><span>leerling met N-profiel op muis</span></div>
-      <div class="toets"><kbd>M</kbd><span>leerling met M-profiel op muis</span></div>
-      <div class="toets"><kbd>Z</kbd><span>laatste punt weg</span></div>
+      <div class="toets"><kbd>N</kbd><span>testleerling met N-profiel op muis</span></div>
+      <div class="toets"><kbd>M</kbd><span>testleerling met M-profiel op muis</span></div>
+      <div class="toets"><kbd>Z</kbd><span>laatste eigen testleerling weg</span></div>
       <div class="toets"><kbd>1</kbd><span>regels</span></div>
       <div class="toets"><kbd>2</kbd><span>k-nearest neighbours</span></div>
       <div class="toets"><kbd>3</kbd><span>perceptron</span></div>
       <div class="toets"><kbd>4</kbd><span>twee perceptrons</span></div>
       <div class="toets"><kbd>5</kbd><span>netwerk</span></div>
-      <div class="toets"><kbd>+ −</kbd><span>k of aantal neuronen</span></div>
+      <div class="toets"><kbd>+ −</kbd><span>k of aantal lijnen</span></div>
       <div class="toets"><kbd>spatie</kbd><span>leren aan / uit</span></div>
-      <div class="toets"><kbd>R</kbd><span>alles wissen</span></div>
+      <div class="toets"><kbd>R</kbd><span>eigen testleerlingen wissen</span></div>
     </div>
     <div class="voet">Informatica · Emmauscollege</div>
   </aside>
@@ -43,8 +43,25 @@
     <div class="inhoud">
       <span class="label">Project 1 · praktijkles 1 en 2</span>
       <h1>Van regels naar leren</h1>
-      <p class="intro">Elke stip is een leerling: het gemiddelde cijfer voor wiskunde en Nederlands, en het profiel. Zet met <kbd>N</kbd> en <kbd>M</kbd> leerlingen neer en laat vier verschillende methodes voorspellen welk profiel bij een nieuwe leerling hoort. De achtergrond laat zien wat het model voorspelt.</p>
-      <div class="tip">Je programmeert in <code>sketch.js</code>. Werk de blokken STAP 1 tot en met STAP 5 op volgorde af.</div>
+      <p class="intro">Kun je aan iemands cijfers voor wiskunde (WIS) en Nederlands (NETL) zien of hij een N-profiel (NT of NG) of een M-profiel (EM of CM) heeft? Je laat vijf methodes het profiel voorspellen: zelfgeschreven regels, k-nearest neighbours, een perceptron, twee gecombineerde perceptrons en een klein neuraal netwerk. De achtergrond laat zien wat het model voorspelt.</p>
+      <h2>Wat is een N-profiel en een M-profiel?</h2>
+      <p class="intro">In de bovenbouw kies je een profiel. Wij delen de profielen op in twee groepen:</p>
+      <ul class="intro">
+        <li><b>N-profiel</b>: Natuur &amp; Techniek (NT) of Natuur &amp; Gezondheid (NG). Veel exacte vakken en wiskunde, minder talen.</li>
+        <li><b>M-profiel</b>: Economie &amp; Maatschappij (EM) of Cultuur &amp; Maatschappij (CM). Meer talen en maatschappijvakken, minder (zware) wiskunde.</li>
+      </ul>
+      <h2>Waarom wiskunde en Nederlands?</h2>
+      <p class="intro">Iedere leerling heeft wiskunde en Nederlands, dus van iedereen hebben we die twee cijfers. Wiskunde hoort bij de exacte kant, Nederlands bij de talige kant. Het idee: wie relatief beter is in wiskunde dan in Nederlands, kiest misschien vaker een N-profiel.</p>
+      <h2>Echte of verzonnen data?</h2>
+      <p class="intro">Eerst wilden we echte (anonieme) cijfers van bovenbouwleerlingen gebruiken. Maar daaruit bleek dat je met alleen deze twee cijfers niet echt kunt voorspellen welk profiel iemand heeft: de N- en M-leerlingen liepen helemaal door elkaar. Je profiel hangt blijkbaar van veel meer af dan twee cijfers. Daarom gebruiken we verzonnen leerlingen waarin wel een patroon zit. Zo kun je goed zien hoe de verschillende methodes werken.</p>
+      <h2>De data</h2>
+      <p class="intro">Elke stip is een (verzonnen) leerling:</p>
+      <ul class="intro">
+        <li><b>WIS</b>: gemiddeld cijfer wiskunde (naar rechts)</li>
+        <li><b>NETL</b>: gemiddeld cijfer Nederlands (naar boven)</li>
+        <li><b>profiel</b>: N_PROFIEL (blauw) of M_PROFIEL (oranje)</li>
+      </ul>
+      <div class="tip">Je programmeert in <code>sketch.js</code>. Werk STAP 1 tot en met STAP 5 op volgorde af.</div>
       <div id="sketch" class="kaart"></div>
     </div>
   </main>
