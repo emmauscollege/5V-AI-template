@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 330" width="940" height="330" font-family="Work Sans, Helvetica, Arial, sans-serif">
+<style>rect{stroke:#9a9a9a} .k{fill:#f2f9e6;stroke:#7dc903} .r{fill:#f4f4f4;stroke:#d0d0d0} .kop{font-size:15px;fill:#4a4a4a} .klein{font-size:12px;fill:#666} text.c{font-size:13px;text-anchor:middle} .groen{fill:none;stroke:#7dc903;stroke-width:4}</style>
+<rect width="940" height="330" fill="#fff" stroke="none"/>
+<text class="kop" x="20" y="30">1. het beeld (5 bij 5 pixels)</text>
+<text class="kop" x="300" y="30">2. de kernel BLUR</text>
+<text class="kop" x="495" y="30">3. vermenigvuldig en tel op</text>
+<text class="kop" x="720" y="30">4. het nieuwe beeld</text>
+<!-- 1. het beeld -->
+<rect x="20" y="50" width="40" height="40" fill="#000"/><text class="c" x="40" y="75" fill="#fff">0</text><rect x="60" y="50" width="40" height="40" fill="#000"/><text class="c" x="80" y="75" fill="#fff">0</text><rect x="100" y="50" width="40" height="40" fill="#fff"/><text class="c" x="120" y="75" fill="#222">255</text><rect x="140" y="50" width="40" height="40" fill="#fff"/><text class="c" x="160" y="75" fill="#222">255</text><rect x="180" y="50" width="40" height="40" fill="#fff"/><text class="c" x="200" y="75" fill="#222">255</text>
+<rect x="20" y="90" width="40" height="40" fill="#000"/><text class="c" x="40" y="115" fill="#fff">0</text><rect x="60" y="90" width="40" height="40" fill="#000"/><text class="c" x="80" y="115" fill="#fff">0</text><rect x="100" y="90" width="40" height="40" fill="#fff"/><text class="c" x="120" y="115" fill="#222">255</text><rect x="140" y="90" width="40" height="40" fill="#fff"/><text class="c" x="160" y="115" fill="#222">255</text><rect x="180" y="90" width="40" height="40" fill="#fff"/><text class="c" x="200" y="115" fill="#222">255</text>
+<rect x="20" y="130" width="40" height="40" fill="#000"/><text class="c" x="40" y="155" fill="#fff">0</text><rect x="60" y="130" width="40" height="40" fill="#000"/><text class="c" x="80" y="155" fill="#fff">0</text><rect x="100" y="130" width="40" height="40" fill="#fff"/><text class="c" x="120" y="155" fill="#222">255</text><rect x="140" y="130" width="40" height="40" fill="#fff"/><text class="c" x="160" y="155" fill="#222">255</text><rect x="180" y="130" width="40" height="40" fill="#fff"/><text class="c" x="200" y="155" fill="#222">255</text>
+<rect x="20" y="170" width="40" height="40" fill="#000"/><text class="c" x="40" y="195" fill="#fff">0</text><rect x="60" y="170" width="40" height="40" fill="#000"/><text class="c" x="80" y="195" fill="#fff">0</text><rect x="100" y="170" width="40" height="40" fill="#fff"/><text class="c" x="120" y="195" fill="#222">255</text><rect x="140" y="170" width="40" height="40" fill="#fff"/><text class="c" x="160" y="195" fill="#222">255</text><rect x="180" y="170" width="40" height="40" fill="#fff"/><text class="c" x="200" y="195" fill="#222">255</text>
+<rect x="20" y="210" width="40" height="40" fill="#000"/><text class="c" x="40" y="235" fill="#fff">0</text><rect x="60" y="210" width="40" height="40" fill="#000"/><text class="c" x="80" y="235" fill="#fff">0</text><rect x="100" y="210" width="40" height="40" fill="#fff"/><text class="c" x="120" y="235" fill="#222">255</text><rect x="140" y="210" width="40" height="40" fill="#fff"/><text class="c" x="160" y="235" fill="#222">255</text><rect x="180" y="210" width="40" height="40" fill="#fff"/><text class="c" x="200" y="235" fill="#222">255</text>
+<rect class="groen" x="60" y="90" width="120" height="120"/>
+<text x="250" y="155" font-size="30" fill="#7dc903" text-anchor="middle">×</text>
+<!-- 2. de kernel -->
+<rect class="k" x="300" y="90" width="40" height="40"/><text class="c" x="320" y="115" fill="#222">1/9</text><rect class="k" x="340" y="90" width="40" height="40"/><text class="c" x="360" y="115" fill="#222">1/9</text><rect class="k" x="380" y="90" width="40" height="40"/><text class="c" x="400" y="115" fill="#222">1/9</text>
+<rect class="k" x="300" y="130" width="40" height="40"/><text class="c" x="320" y="155" fill="#222">1/9</text><rect class="k" x="340" y="130" width="40" height="40"/><text class="c" x="360" y="155" fill="#222">1/9</text><rect class="k" x="380" y="130" width="40" height="40"/><text class="c" x="400" y="155" fill="#222">1/9</text>
+<rect class="k" x="300" y="170" width="40" height="40"/><text class="c" x="320" y="195" fill="#222">1/9</text><rect class="k" x="340" y="170" width="40" height="40"/><text class="c" x="360" y="195" fill="#222">1/9</text><rect class="k" x="380" y="170" width="40" height="40"/><text class="c" x="400" y="195" fill="#222">1/9</text>
+<text class="klein" x="360" y="238" text-anchor="middle">leg het midden op de pixel</text>
+<text x="455" y="155" font-size="30" fill="#7dc903" text-anchor="middle">=</text>
+<!-- 3. de som -->
+<text x="495" y="110" font-size="12" fill="#222">  0 × 1/9 + 255 × 1/9 + 255 × 1/9</text>
+<text x="495" y="134" font-size="12" fill="#222">+ 0 × 1/9 + 255 × 1/9 + 255 × 1/9</text>
+<text x="495" y="158" font-size="12" fill="#222">+ 0 × 1/9 + 255 × 1/9 + 255 × 1/9</text>
+<text x="495" y="192" font-size="15" fill="#222">= 1530 / 9 = <tspan font-weight="600">170</tspan></text>
+<line x1="495" y1="210" x2="625" y2="210" stroke="#7dc903" stroke-width="2"/>
+<text class="klein" x="495" y="230">dit wordt de groene pixel</text>
+<!-- 4. het nieuwe beeld -->
+<rect class="r" x="720" y="50" width="40" height="40"/><rect class="r" x="760" y="50" width="40" height="40"/><rect class="r" x="800" y="50" width="40" height="40"/><rect class="r" x="840" y="50" width="40" height="40"/><rect class="r" x="880" y="50" width="40" height="40"/>
+<rect class="r" x="720" y="90" width="40" height="40"/><rect x="760" y="90" width="40" height="40" fill="rgb(85,85,85)"/><text class="c" x="780" y="115" fill="#fff">85</text><rect x="800" y="90" width="40" height="40" fill="rgb(170,170,170)"/><text class="c" x="820" y="115" fill="#222">170</text><rect x="840" y="90" width="40" height="40" fill="rgb(255,255,255)"/><text class="c" x="860" y="115" fill="#222">255</text><rect class="r" x="880" y="90" width="40" height="40"/>
+<rect class="r" x="720" y="130" width="40" height="40"/><rect x="760" y="130" width="40" height="40" fill="rgb(85,85,85)"/><text class="c" x="780" y="155" fill="#fff">85</text><rect x="800" y="130" width="40" height="40" fill="rgb(170,170,170)"/><text class="c" x="820" y="155" fill="#222">170</text><rect x="840" y="130" width="40" height="40" fill="rgb(255,255,255)"/><text class="c" x="860" y="155" fill="#222">255</text><rect class="r" x="880" y="130" width="40" height="40"/>
+<rect class="r" x="720" y="170" width="40" height="40"/><rect x="760" y="170" width="40" height="40" fill="rgb(85,85,85)"/><text class="c" x="780" y="195" fill="#fff">85</text><rect x="800" y="170" width="40" height="40" fill="rgb(170,170,170)"/><text class="c" x="820" y="195" fill="#222">170</text><rect x="840" y="170" width="40" height="40" fill="rgb(255,255,255)"/><text class="c" x="860" y="195" fill="#222">255</text><rect class="r" x="880" y="170" width="40" height="40"/>
+<rect class="r" x="720" y="210" width="40" height="40"/><rect class="r" x="760" y="210" width="40" height="40"/><rect class="r" x="800" y="210" width="40" height="40"/><rect class="r" x="840" y="210" width="40" height="40"/><rect class="r" x="880" y="210" width="40" height="40"/>
+<rect class="groen" x="800" y="130" width="40" height="40"/>
+<text class="klein" x="720" y="272">lichtgrijs = rand, overgeslagen</text>
+<text x="20" y="302" font-size="13" fill="#4a4a4a">Daarna schuift de kernel één pixel op en reken je de volgende pixel uit. Zo vul je het hele nieuwe beeld.</text>
+<text x="20" y="320" font-size="13" fill="#4a4a4a">De scherpe rand tussen zwart en wit wordt een zachte overgang (85, 170, 255): het beeld wordt wazig.</text>
+</svg>

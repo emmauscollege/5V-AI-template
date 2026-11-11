@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 448" width="940" height="448" font-family="Work Sans, Helvetica, Arial, sans-serif">
+<style>rect{stroke:#9a9a9a} .kop{font-size:15px;fill:#4a4a4a} .klein{font-size:12px;fill:#666} .tekst{font-size:13px;fill:#4a4a4a} text.c{font-size:13px;text-anchor:middle} .groen{fill:none;stroke:#7dc903;stroke-width:4}</style>
+<rect width="940" height="448" fill="#fff" stroke="none"/>
+<text class="kop" x="20" y="30">De CNN uit STAP 4c, van links naar rechts</text>
+<!-- invoer -->
+<rect x="20" y="90" width="110" height="110" fill="#000"/><text x="75" y="172" font-size="80" fill="#fff" text-anchor="middle">7</text>
+<text class="tekst" x="75" y="282" text-anchor="middle">invoer</text><text class="klein" x="75" y="300" text-anchor="middle">28 x 28 pixels</text>
+<line x1="138" y1="145" x2="160" y2="145" stroke="#7dc903" stroke-width="3"/><path d="M158,138 L168,145 L158,152 Z" fill="#7dc903"/>
+<!-- convolutielaag -->
+<rect x="218" y="120" width="96" height="96" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="212" y="114" width="96" height="96" fill="#2b2b2b" style="stroke:#7dc903"/>
+<rect x="206" y="108" width="96" height="96" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="200" y="102" width="96" height="96" fill="#2b2b2b" style="stroke:#7dc903"/>
+<rect x="194" y="96" width="96" height="96" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="188" y="90" width="96" height="96" fill="#2b2b2b" style="stroke:#7dc903"/>
+<rect x="182" y="84" width="96" height="96" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="176" y="78" width="96" height="96" fill="#2b2b2b" style="stroke:#7dc903"/>
+<text class="tekst" x="245" y="282" text-anchor="middle">convolutielaag</text><text class="klein" x="245" y="300" text-anchor="middle">8 filters van 3 x 3</text><text class="klein" x="245" y="316" text-anchor="middle">8 beelden van 26 x 26</text>
+<line x1="326" y1="145" x2="348" y2="145" stroke="#7dc903" stroke-width="3"/><path d="M346,138 L356,145 L346,152 Z" fill="#7dc903"/>
+<!-- poolinglaag -->
+<rect x="399" y="140" width="50" height="50" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="394" y="135" width="50" height="50" fill="#2b2b2b" style="stroke:#7dc903"/>
+<rect x="389" y="130" width="50" height="50" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="384" y="125" width="50" height="50" fill="#2b2b2b" style="stroke:#7dc903"/>
+<rect x="379" y="120" width="50" height="50" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="374" y="115" width="50" height="50" fill="#2b2b2b" style="stroke:#7dc903"/>
+<rect x="369" y="110" width="50" height="50" fill="#3a3a3a" style="stroke:#7dc903"/>
+<rect x="364" y="105" width="50" height="50" fill="#2b2b2b" style="stroke:#7dc903"/>
+<text class="tekst" x="410" y="282" text-anchor="middle">poolinglaag</text><text class="klein" x="410" y="300" text-anchor="middle">blokken van 2 x 2</text><text class="klein" x="410" y="316" text-anchor="middle">8 beelden van 13 x 13</text>
+<line x1="462" y1="145" x2="484" y2="145" stroke="#7dc903" stroke-width="3"/><path d="M482,138 L492,145 L482,152 Z" fill="#7dc903"/>
+<!-- platte laag -->
+<rect x="500" y="60" width="22" height="15" fill="#141414"/><rect x="500" y="75" width="22" height="15" fill="#c8c8c8"/><rect x="500" y="90" width="22" height="15" fill="#5a5a5a"/><rect x="500" y="105" width="22" height="15" fill="#ffffff"/><rect x="500" y="120" width="22" height="15" fill="#000000"/><rect x="500" y="135" width="22" height="15" fill="#8c8c8c"/><rect x="500" y="150" width="22" height="15" fill="#3c3c3c"/><rect x="500" y="165" width="22" height="15" fill="#e6e6e6"/><rect x="500" y="180" width="22" height="15" fill="#0a0a0a"/><rect x="500" y="195" width="22" height="15" fill="#b4b4b4"/><rect x="500" y="210" width="22" height="15" fill="#282828"/><rect x="500" y="225" width="22" height="15" fill="#787878"/>
+<text class="tekst" x="511" y="282" text-anchor="middle">platte laag</text><text class="klein" x="511" y="300" text-anchor="middle">1352 getallen</text><text class="klein" x="511" y="316" text-anchor="middle">(8 x 13 x 13)</text>
+<!-- verbindingen -->
+<path d="M522,68 L660,55 M522,113 L660,55 M522,158 L660,55 M522,203 L660,55 M672,55 L800,45 M672,55 L800,67 M672,55 L800,89 M672,55 L800,111 M672,55 L800,133 M672,55 L800,155 M672,55 L800,177 M672,55 L800,199 M672,55 L800,221 M672,55 L800,243 M522,68 L660,75 M522,113 L660,75 M522,158 L660,75 M522,203 L660,75 M672,75 L800,45 M672,75 L800,67 M672,75 L800,89 M672,75 L800,111 M672,75 L800,133 M672,75 L800,155 M672,75 L800,177 M672,75 L800,199 M672,75 L800,221 M672,75 L800,243 M522,68 L660,95 M522,113 L660,95 M522,158 L660,95 M522,203 L660,95 M672,95 L800,45 M672,95 L800,67 M672,95 L800,89 M672,95 L800,111 M672,95 L800,133 M672,95 L800,155 M672,95 L800,177 M672,95 L800,199 M672,95 L800,221 M672,95 L800,243 M522,68 L660,115 M522,113 L660,115 M522,158 L660,115 M522,203 L660,115 M672,115 L800,45 M672,115 L800,67 M672,115 L800,89 M672,115 L800,111 M672,115 L800,133 M672,115 L800,155 M672,115 L800,177 M672,115 L800,199 M672,115 L800,221 M672,115 L800,243 M522,68 L660,135 M522,113 L660,135 M522,158 L660,135 M522,203 L660,135 M672,135 L800,45 M672,135 L800,67 M672,135 L800,89 M672,135 L800,111 M672,135 L800,133 M672,135 L800,155 M672,135 L800,177 M672,135 L800,199 M672,135 L800,221 M672,135 L800,243 M522,68 L660,155 M522,113 L660,155 M522,158 L660,155 M522,203 L660,155 M672,155 L800,45 M672,155 L800,67 M672,155 L800,89 M672,155 L800,111 M672,155 L800,133 M672,155 L800,155 M672,155 L800,177 M672,155 L800,199 M672,155 L800,221 M672,155 L800,243 M522,68 L660,175 M522,113 L660,175 M522,158 L660,175 M522,203 L660,175 M672,175 L800,45 M672,175 L800,67 M672,175 L800,89 M672,175 L800,111 M672,175 L800,133 M672,175 L800,155 M672,175 L800,177 M672,175 L800,199 M672,175 L800,221 M672,175 L800,243 M522,68 L660,195 M522,113 L660,195 M522,158 L660,195 M522,203 L660,195 M672,195 L800,45 M672,195 L800,67 M672,195 L800,89 M672,195 L800,111 M672,195 L800,133 M672,195 L800,155 M672,195 L800,177 M672,195 L800,199 M672,195 L800,221 M672,195 L800,243 M522,68 L660,215 M522,113 L660,215 M522,158 L660,215 M522,203 L660,215 M672,215 L800,45 M672,215 L800,67 M672,215 L800,89 M672,215 L800,111 M672,215 L800,133 M672,215 L800,155 M672,215 L800,177 M672,215 L800,199 M672,215 L800,221 M672,215 L800,243 M522,68 L660,235 M522,113 L660,235 M522,158 L660,235 M522,203 L660,235 M672,235 L800,45 M672,235 L800,67 M672,235 L800,89 M672,235 L800,111 M672,235 L800,133 M672,235 L800,155 M672,235 L800,177 M672,235 L800,199 M672,235 L800,221 M672,235 L800,243" stroke="#c8c8c8" stroke-width="0.7" fill="none"/>
+<!-- verborgen laag: 32 neuronen, 10 getekend -->
+<circle cx="666" cy="55" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="75" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="95" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="115" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="135" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="155" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="175" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="195" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="215" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/><circle cx="666" cy="235" r="7" fill="#f2f9e6" stroke="#7dc903" stroke-width="2"/>
+<text class="klein" x="666" y="262" text-anchor="middle">⋮</text>
+<text class="tekst" x="666" y="282" text-anchor="middle">verborgen laag</text><text class="klein" x="666" y="300" text-anchor="middle">32 neuronen</text>
+<!-- uitvoerlaag -->
+<circle cx="806" cy="45" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="49">0</text><rect x="836" y="40" width="1" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="67" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="71">1</text><rect x="836" y="62" width="1" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="89" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="93">2</text><rect x="836" y="84" width="1.6" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="111" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="115">3</text><rect x="836" y="106" width="1" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="133" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="137">4</text><rect x="836" y="128" width="1" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="155" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="159">5</text><rect x="836" y="150" width="1" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="177" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="181">6</text><rect x="836" y="172" width="1" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="199" r="8" fill="#7dc903" stroke="#7dc903" stroke-width="2"/><text class="klein" x="822" y="203">7</text><rect x="836" y="194" width="73.6" height="10" fill="#7dc903" stroke="none"/>
+<circle cx="806" cy="221" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="225">8</text><rect x="836" y="216" width="1.6" height="10" fill="#bbb" stroke="none"/>
+<circle cx="806" cy="243" r="8" fill="#fff" stroke="#9a9a9a" stroke-width="2"/><text class="klein" x="822" y="247">9</text><rect x="836" y="238" width="1.6" height="10" fill="#bbb" stroke="none"/>
+<text class="tekst" x="806" y="282" text-anchor="middle">uitvoerlaag</text><text class="klein" x="806" y="300" text-anchor="middle">10 neuronen: 0 t/m 9</text>
+<!-- één neuron -->
+<rect x="20" y="336" width="900" height="96" rx="8" fill="#f8f8f8" style="stroke:#e4e4e4"/>
+<text class="kop" x="36" y="362">Wat doet één neuron?</text>
+<text class="tekst" x="36" y="388">Elke invoer keer een gewicht, alles opgeteld:   som = invoer1 × gewicht1 + invoer2 × gewicht2 + ... + invoer1352 × gewicht1352</text>
+<text class="tekst" x="36" y="412">Trainen = de gewichten steeds een beetje aanpassen. Dit netwerk heeft 43.706 gewichten. Het uitvoerneuron met de hoogste uitkomst is het antwoord.</text>
+</svg>

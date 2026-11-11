@@ -1,96 +1,109 @@
-let blur = [
-  [1 / 9, 1 / 9, 1 / 9],
-  [1 / 9, 1 / 9, 1 / 9],
-  [1 / 9, 1 / 9, 1 / 9],
-];
-
-let randenVerticaal = [
-  [-1, 0, 1],
-  [-2, 0, 2],
-  [-1, 0, 1],
-];
-
-let randenHorizontaal = [
-  [-1, -2, -1],
-  [0, 0, 0],
-  [1, 2, 1],
-];
-
-let eigenFilter = [
-  [0, -1, 0],
-  [-1, 5, -1],
-  [0, -1, 0],
-];
-
-function convolutie(b, k) {
-  let hoogte = b.length;
-  let breedte = b[0].length;
-  let uit = maakLeegBeeld(breedte, hoogte);
-  for (let y = 1; y < hoogte - 1; y++) {
-    for (let x = 1; x < breedte - 1; x++) {
-      let som = 0;
-      for (let ky = 0; ky < 3; ky++) {
-        for (let kx = 0; kx < 3; kx++) {
-          som = som + b[y + ky - 1][x + kx - 1] * k[ky][kx];
-        }
+function drempel(beeld, grens) {
+  let nieuw = maakLeegBeeld(beeld[0].length, beeld.length);
+  for (let rij = 0; rij < beeld.length; rij++) {
+    for (let kolom = 0; kolom < beeld[0].length; kolom++) {
+      if (beeld[rij][kolom] < grens) {
+        nieuw[rij][kolom] = WIT;
+      } else {
+        nieuw[rij][kolom] = ZWART;
       }
-      uit[y][x] = abs(som);
     }
   }
-  return uit;
+  return nieuw;
 }
 
-function pooling(b, g) {
-  let hoogte = floor(b.length / g);
-  let breedte = floor(b[0].length / g);
-  let uit = maakLeegBeeld(breedte, hoogte);
-  for (let y = 0; y < hoogte; y++) {
-    for (let x = 0; x < breedte; x++) {
-      let grootste = 0;
-      for (let dy = 0; dy < g; dy++) {
-        for (let dx = 0; dx < g; dx++) {
-          let waarde = b[y * g + dy][x * g + dx];
+// Tussenversie STAP 2a (alleen het midden):
+//
+//   let som = beeld[rij][kolom] * kernel[1][1];
+//
+// Eindversie STAP 2b:
+function convolutie(beeld, kernel) {
+  let nieuw = maakLeegBeeld(beeld[0].length, beeld.length);
+  for (let rij = 1; rij < beeld.length - 1; rij++) {
+    for (let kolom = 1; kolom < beeld[0].length - 1; kolom++) {
+      let som = 0;
+      for (let kRij = 0; kRij < 3; kRij++) {
+        for (let kKolom = 0; kKolom < 3; kKolom++) {
+          som = som + beeld[rij + kRij - 1][kolom + kKolom - 1] * kernel[kRij][kKolom];
+        }
+      }
+      nieuw[rij][kolom] = abs(som);
+    }
+  }
+  return nieuw;
+}
+
+// Tussenversie STAP 3a (linksboven):
+//
+//   klein[rij][kolom] = beeld[rij * blok][kolom * blok];
+//
+// Eindversie STAP 3b:
+function pooling(beeld, blok) {
+  let klein = maakLeegBeeld(floor(beeld[0].length / blok), floor(beeld.length / blok));
+  for (let rij = 0; rij < klein.length; rij++) {
+    for (let kolom = 0; kolom < klein[0].length; kolom++) {
+      let grootste = ZWART;
+      for (let bRij = 0; bRij < blok; bRij++) {
+        for (let bKolom = 0; bKolom < blok; bKolom++) {
+          let waarde = beeld[rij * blok + bRij][kolom * blok + bKolom];
           if (waarde > grootste) {
             grootste = waarde;
           }
         }
       }
-      uit[y][x] = grootste;
+      klein[rij][kolom] = grootste;
     }
   }
-  return uit;
+  return klein;
 }
 
-function drempel(b, grens) {
-  let hoogte = b.length;
-  let breedte = b[0].length;
-  let uit = maakLeegBeeld(breedte, hoogte);
-  for (let y = 0; y < hoogte; y++) {
-    for (let x = 0; x < breedte; x++) {
-      if (b[y][x] < grens) {
-        uit[y][x] = 255;
-      } else {
-        uit[y][x] = 0;
-      }
-    }
-  }
-  return uit;
-}
-
+// STAP 4a: alleen plat + uitvoer
+// STAP 4b: plat + voegNeuronenLaagToe(model, 32) + uitvoer
+// STAP 4c: een CNN
 function maakModel() {
-  let model = tf.sequential();
-  model.add(tf.layers.conv2d({ inputShape: [28, 28, 1], filters: 8, kernelSize: 3, activation: "relu" }));
-  model.add(tf.layers.maxPooling2d({ poolSize: 2 }));
-  model.add(tf.layers.flatten());
-  model.add(tf.layers.dense({ units: 32, activation: "relu" }));
-  model.add(tf.layers.dense({ units: 10, activation: "softmax" }));
+  let model = nieuwModel();
+  voegConvolutieLaagToe(model, 8);
+  voegPoolingLaagToe(model);
+  voegPlatLaagToe(model);
+  voegNeuronenLaagToe(model, 32);
+  voegUitvoerLaagToe(model);
   return model;
 }
 
+function telPerCijfer() {
+  for (let i = 0; i < testCijfers.length; i++) {
+    let cijfer = testCijfers[i];
+    totaalPerCijfer[cijfer] = totaalPerCijfer[cijfer] + 1;
+    if (testVoorspellingen[i] === cijfer) {
+      goedPerCijfer[cijfer] = goedPerCijfer[cijfer] + 1;
+    }
+  }
+}
+
+// 6a blur, 6b drempel, 6c centreer (na drempel: het zoekt naar witte
+// pixels), 6d pooling (blok 196 / 28 = 7), 6e gemiddeldePooling
+// in plaats van pooling
 function voorbewerking(img) {
-  let b = naarGrijs(img);
-  b = convolutie(b, blur);
-  b = drempel(b, 100);
-  b = pooling(b, 7);
-  return centreer(b);
+  let beeld = naarGrijs(img);
+  beeld = convolutie(beeld, BLUR);
+  beeld = drempel(beeld, INKT_GRENS);
+  beeld = centreer(beeld);
+  beeld = gemiddeldePooling(beeld, WEBCAM_PIXELS / CIJFER_PIXELS);
+  return beeld;
+}
+
+function gemiddeldePooling(beeld, blok) {
+  let klein = maakLeegBeeld(floor(beeld[0].length / blok), floor(beeld.length / blok));
+  for (let rij = 0; rij < klein.length; rij++) {
+    for (let kolom = 0; kolom < klein[0].length; kolom++) {
+      let som = 0;
+      for (let bRij = 0; bRij < blok; bRij++) {
+        for (let bKolom = 0; bKolom < blok; bKolom++) {
+          som = som + beeld[rij * blok + bRij][kolom * blok + bKolom];
+        }
+      }
+      klein[rij][kolom] = som / (blok * blok);
+    }
+  }
+  return klein;
 }

@@ -25,14 +25,16 @@
     </nav>
     <div class="zij-kop">Bediening</div>
     <div class="bediening">
+      <div class="toets"><kbd>D</kbd><span>deel 1: drempel</span></div>
       <div class="toets"><kbd>1</kbd><span>deel 1: blur</span></div>
       <div class="toets"><kbd>2</kbd><span>deel 1: randen verticaal</span></div>
       <div class="toets"><kbd>3</kbd><span>deel 1: randen horizontaal</span></div>
-      <div class="toets"><kbd>4</kbd><span>deel 1: eigen filter</span></div>
+      <div class="toets"><kbd>4</kbd><span>deel 1: verscherpen</span></div>
       <div class="toets"><kbd>F</kbd><span>deel 1: webcam / foto</span></div>
       <div class="toets"><kbd>Train netwerk</kbd><span>deel 2: trainen</span></div>
-      <div class="toets"><kbd>Webcam</kbd><span>deel 2: cijfer voor camera</span></div>
       <div class="toets"><kbd>Tekenen</kbd><span>deel 2: tekenen met muis</span></div>
+      <div class="toets"><kbd>Wissen</kbd><span>deel 2: tekenvak leeg</span></div>
+      <div class="toets"><kbd>Webcam</kbd><span>deel 2: cijfer voor camera</span></div>
     </div>
     <div class="voet">Informatica · Emmauscollege</div>
   </aside>
@@ -41,8 +43,28 @@
     <div class="inhoud">
       <span class="label">Project 2 · praktijkles 3 en 4</span>
       <h1>Een eigen CNN</h1>
-      <p class="intro">In deel 1 bouw je de bouwstenen van een convolutioneel neuraal netwerk (CNN): filters die over een beeld schuiven en pooling die het beeld verkleint. In deel 2 bouw je een netwerk dat handgeschreven cijfers herkent. Houd daarna een cijfer op papier voor je webcam: jouw eigen functies uit deel 1 maken het beeld klaar voor het netwerk.</p>
-      <div class="tip">Je programmeert in <code>sketch.js</code>. Deel 1 is STAP 1 tot en met 3, deel 2 is STAP 4 tot en met 6. Schrijf voor de webcam met een dikke zwarte stift op wit papier.</div>
+      <p class="intro">In deel 1 bouw je de bouwstenen waarmee computers beelden bekijken: een drempel, filters en pooling. In deel 2 bouw je een neuraal netwerk dat handgeschreven cijfers herkent, zoek je uit welke cijfers het moeilijk vindt en test je het met je eigen tekening of webcam. Jouw functies uit deel 1 maken dat beeld klaar voor het netwerk.</p>
+      <h2>Hoe ziet een computer een beeld?</h2>
+      <p class="intro">Voor een computer is een foto een tabel met getallen. Elk vakje is een <b>pixel</b> met een helderheid: 0 is zwart, 255 is wit, alles daartussen is grijs. Een kleurenfoto heeft drie van zulke tabellen (rood, groen en blauw), maar wij werken met grijs. <b>Computer vision</b> is het vakgebied dat computers leert begrijpen wat er op zo'n tabel getallen staat.</p>
+      <p><img src="beeld.svg" alt="Een 7 van 8 bij 8 pixels, links als plaatje en rechts als tabel met getallen van 0 tot 255." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <h2>Filters (convolutie)</h2>
+      <p class="intro">Een filter bewerkt elke pixel met behulp van zijn buren. Het filter is een klein raster van 3 bij 3 getallen, de <b>kernel</b>. Je legt het midden van de kernel op een pixel, vermenigvuldigt de 9 pixels eronder met de getallen in de kernel en telt alles op. Die som is de nieuwe pixel. Dat over het hele beeld schuiven heet <b>convolutie</b>.</p>
+      <p><img src="convolutie.svg" alt="Convolutie met de kernel BLUR: de kernel ligt op een pixel, de negen pixels worden met 1/9 vermenigvuldigd en opgeteld, de uitkomst 170 is de nieuwe pixel." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <p class="intro">Met andere getallen in de kernel krijg je een ander effect. <b>BLUR</b> heeft overal 1/9: de nieuwe pixel is het gemiddelde van 9 pixels, dus het beeld wordt wazig. <b>RANDEN_VERTICAAL</b> heeft links -1, -2, -1 en rechts 1, 2, 1: hij trekt de linkerkant af van de rechterkant. In een egaal vlak is de som 0 (zwart), op een rand is hij groot (wit). Randen zijn belangrijk, want de vorm van iets bestaat uit randen.</p>
+      <h2>Pooling</h2>
+      <p class="intro">Bij <b>pooling</b> maak je een beeld kleiner. Je verdeelt het beeld in blokjes en maakt van elk blokje één pixel. Bij <b>max pooling</b> houd je per blokje de grootste waarde over: wat belangrijk is (een sterke rand) blijft zichtbaar. Bij <b>gemiddelde pooling</b> neem je het gemiddelde van het blokje: dan krijg je zachte, grijze randen. Een netwerk hoeft na pooling minder getallen te bekijken, en het maakt minder uit of iets een paar pixels verschoven is.</p>
+      <p><img src="pooling.svg" alt="Een beeld van 4 bij 4 wordt met blokken van 2 bij 2 verkleind tot 2 bij 2, met max pooling en met gemiddelde pooling." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <h2>Wat is een neuraal netwerk?</h2>
+      <p class="intro">Een neuraal netwerk bestaat uit <b>neuronen</b>. Een neuron rekent een som uit: elke invoer keer een <b>gewicht</b>, alles opgeteld. Neuronen zitten in <b>lagen</b>: de uitkomsten van de ene laag zijn de invoer van de volgende. De laatste laag, de <b>uitvoerlaag</b>, heeft hier 10 neuronen, één per cijfer. Het neuron met de hoogste uitkomst is het antwoord. Lagen tussen de invoer en de uitvoerlaag heten <b>verborgen lagen</b>.</p>
+      <p><img src="netwerk.svg" alt="De CNN uit stap 4c: invoer 28 bij 28, convolutielaag, poolinglaag, platte laag, verborgen laag met 32 neuronen en uitvoerlaag met 10 neuronen." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <p class="intro">Bij het <b>trainen</b> laat je het netwerk heel veel voorbeelden zien waarvan je het goede antwoord weet. Na elk voorbeeld past het netwerk zijn gewichten een klein beetje aan, zodat het de volgende keer beter scoort. Eén keer alle voorbeelden langs heet een <b>epoch</b>. Een deel van de voorbeelden houden we apart als <b>testdata</b>: daarmee meten we de <b>accuracy</b>, het percentage dat het netwerk goed heeft op cijfers die het nog niet gezien heeft.</p>
+      <h2>Wat is een CNN?</h2>
+      <p class="intro">Een <b>CNN</b> (convolutioneel neuraal netwerk) is een neuraal netwerk dat begint met convolutie- en poolinglagen: precies de bouwstenen uit deel 1. Het verschil is dat jij in deel 1 de getallen in de kernels zelf kiest. Een CNN zoekt die getallen tijdens het trainen zelf, zodat de filters zoeken naar wat helpt om cijfers te herkennen.</p>
+      <h2>De data</h2>
+      <p class="intro">Het netwerk leert van 15.000 handgeschreven cijfers uit de <b>MNIST</b>-dataset, een bekende verzameling die veel gebruikt wordt om AI te testen. Elk cijfer is 28 bij 28 pixels: een wit cijfer op een zwarte achtergrond, met zachte grijze randen. Het cijfer staat altijd in het midden en is altijd ongeveer even groot. 85% van de cijfers gebruikt het netwerk om van te leren, 15% is testdata.</p>
+      <h2>Voorbewerking</h2>
+      <p class="intro">Jouw tekening of webcambeeld ziet er heel anders uit dan een MNIST-cijfer: groter, donkere inkt op licht papier, ergens in het vak en soms met ruis (losse stipjes). Een netwerk werkt alleen goed op beelden die lijken op de beelden waarvan het geleerd heeft. Daarom maak je elk nieuw beeld eerst zo klaar dat het op de trainingsdata lijkt. Dat heet <b>voorbewerking</b>. Daarvoor gebruik je je eigen functies uit deel 1.</p>
+      <div class="tip">Je programmeert in <code>sketch.js</code>. Deel 1 (praktijkles 3) is STAP 1 tot en met 3, deel 2 (praktijkles 4) is STAP 4 tot en met 6. Teken je cijfers groot. Schrijf voor de webcam met een dikke zwarte stift op wit papier.</div>
       <div id="sketch" class="kaart"></div>
     </div>
   </main>
