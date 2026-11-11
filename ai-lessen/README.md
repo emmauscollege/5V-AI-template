@@ -11,7 +11,7 @@ In deze repo bouw je zelf de algoritmes uit de theorielessen over kunstmatige in
 | Project | Map | Praktijkles | Wat bouw je? |
 |---|---|---|---|
 | 1. Van regels naar leren | `1-regels-en-buren` | 1 en 2 | Voorspel het profiel van een leerling met regels, k-nearest neighbours, een perceptron en een klein netwerk. |
-| 2. Een eigen CNN | `2-cnn` | 3 en 4 | Programmeer filters en pooling en bouw een netwerk dat handgeschreven cijfers herkent via je webcam. |
+| 2. Een eigen CNN | `2-cnn` | 3 en 4 | Programmeer een drempel, filters en pooling, bouw een netwerk dat handgeschreven cijfers herkent en test het met je eigen tekening of webcam. |
 | 3. Je eigen taalbot | `3-taalmodel` | 5 en 6 | Een taalmodel op Wikipedia-artikelen over jouw onderwerp, met autocomplete. |
 
 ## Starten
@@ -60,4 +60,5 @@ https://poloclub.github.io/transformer-explainer/
 ## Credits
 - [p5.js](https://p5js.org/) en [TensorFlow.js](https://www.tensorflow.org/js)
 - Project 2 gebruikt 15.000 cijfers uit de MNIST-dataset van Yann LeCun en Corinna Cortes (licentie CC BY-SA 3.0)
-- Project 3 gebruikt teksten van [Wikipedia](https://nl.wikipedia.org/) (licentie)
+- Project 3 gebruikt teksten van [Wikipedia](https://nl.wikipedia.org/) (licentie CC BY-SA 4.0)
+- Lettertype [Work Sans](https://fonts.google.com/specimen/Work+Sans)

@@ -15,7 +15,9 @@ Open daarna http://localhost:8000. De startpagina linkt naar de leerlingversie e
 
 - Project 2, deel 2 traint in de browser met TensorFlow.js. Op een gewone laptop duurt dat ongeveer 10 tot 60 seconden per epoch.
 - De webcam werkt alleen via een server (localhost of https), niet als je index.html dubbelklikt.
-- Laat leerlingen voor de webcam een dikke zwarte stift op wit papier gebruiken en het cijfer het groene vak laten vullen.
+- Laat leerlingen voor de webcam een dikke zwarte stift op wit papier gebruiken en het cijfer in het groene vak houden. Bij tekenen met de muis werkt een groot cijfer het best.
+- Verwachte accuracy in project 2 na 3 epochs: ongeveer 91% bij STAP 4a (alleen uitvoerlaag), 93% bij 4b (verborgen laag) en 95% bij 4c (CNN). Schommelingen van een procent zijn normaal.
+- In STAP 6 zien leerlingen per deelstap meer getekende cijfers goed gaan. Met de werkende versie gaan bijna alle duidelijk getekende cijfers goed. Gaat het bij een leerling vaak mis, kijk dan eerst of de volgorde in `voorbewerking` klopt (blur, drempel, centreer, pooling).
 - Project 3 haalt artikelen rechtstreeks op van Wikipedia. De voorbeeldlijst gaat over wielrennen. Test dat één keer op het schoolnetwerk. Een titel die niet bestaat, wordt overgeslagen en onder "Niet gevonden" getoond.
 - Vervang `ai-lessen/2-cnn/foto.jpg` gerust door een eigen vierkante foto. Die wordt gebruikt als er geen webcam is (toets F).
 
