@@ -24,10 +24,9 @@
     </nav>
     <div class="zij-kop">Bediening</div>
     <div class="bediening">
-      <div class="toets"><kbd>Enter</kbd><span>zin laten afmaken</span></div>
-      <div class="toets"><kbd>Verras me</kbd><span>bot begint zelf</span></div>
-      <div class="toets"><kbd>schuif</kbd><span>context n</span></div>
-      <div class="toets"><kbd>suggestie</kbd><span>klik om toe te voegen</span></div>
+      <div class="toets"><kbd>Genereer tekst</kbd><span>bot schrijft verder</span></div>
+      <div class="toets"><kbd>schuif</kbd><span>contextLengte</span></div>
+      <div class="toets"><kbd>invoerveld</kbd><span>onderzoek een woord</span></div>
     </div>
     <div class="voet">Informatica · Emmauscollege</div>
   </aside>
@@ -36,8 +35,25 @@
     <div class="inhoud">
       <span class="label">Project 3 · praktijkles 5 en 6</span>
       <h1>Je eigen taalbot</h1>
-      <p class="intro">Je bot leest Wikipedia-artikelen over een onderwerp dat jij kiest, bijvoorbeeld wielrennen, en kijkt welk woord na welk woord komt. Daarmee maakt hij jouw zinnen af en voorspelt hij het volgende woord, net als het toetsenbord van je telefoon.</p>
-      <div class="tip">Zet bovenaan <code>sketch.js</code> de titels van jouw Wikipedia-artikelen in de lijst <code>artikelen</code>. Werk daarna STAP 1 tot en met 4 (les 1) en STAP 5 en 6 (les 2) af.</div>
+      <p class="intro">Je bot leest Wikipedia-artikelen over een onderwerp, bijvoorbeeld wielrennen, en kijkt welk woord na welk woord komt. Je programmeert hem zo dat hij zelf tekst schrijft. Daarna onderzoek je hoe goed hij is: wanneer schrijft hij iets nieuws, en wanneer kopieert hij gewoon uit Wikipedia?</p>
+      <h2>Wat is een taalmodel?</h2>
+      <p class="intro">Een <b>taalmodel</b> voorspelt het volgende woord in een tekst. Je toetsenbord doet dat als het woorden voorstelt, en ChatGPT doet in de kern hetzelfde: steeds één woord voorspellen en erachter plakken. Jouw bot leert dat door heel veel tekst te lezen en te tellen welk woord na welk woord komt. Die tekst heet de <b>trainingsdata</b>.</p>
+      <h2>Hoe ziet je bot tekst?</h2>
+      <p class="intro">Je bot knipt de artikelen in losse woorden, in kleine letters. Leestekens zoals een punt tellen ook als woord. Al die woorden staan op volgorde in één lange lijst. Elk woord heeft een plek in die lijst, net als de pixels in project 2.</p>
+      <p><img src="tekst.svg" alt="De zin De Tour start in Rotterdam wordt een lijst losse woorden met een nummer per plek. Tour staat er twee keer in." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <h2>Wat komt erna?</h2>
+      <p class="intro">De <b>context</b> is het stukje tekst waar je bot naar kijkt: de laatste woorden. Je bot zoekt in de lijst elke plek waar de context staat, en schrijft op welk woord daarna komt. Die lijst heet <b>opties</b>. Komt een woord vaak na de context, dan staat het vaak in de opties en heeft het meer <b>kans</b> om gekozen te worden. Een model dat zo telt, heet een <b>n-gram-model</b>: het kijkt naar groepjes van n woorden.</p>
+      <p><img src="volgende.svg" alt="Met context in komen rotterdam en parijs als opties. Met context start in is rotterdam de enige optie." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <h2>Tekst genereren</h2>
+      <p class="intro">Om tekst te schrijven, herhaalt je bot steeds hetzelfde: pak de context, zoek de opties, kies er willekeurig één uit en zet die achter de tekst. Dat heet <b>genereren</b>. Je bot onthoudt alleen de laatste woorden. Daardoor kan hij zinnen maken die nergens in de tekst staan, en die ook niet waar zijn. Echte taalmodellen doen dat ook. Dat heet <b>hallucineren</b>.</p>
+      <p><img src="genereren.svg" alt="Stap voor stap wordt de tekst de tour langer: start, in, parijs en een punt. Elke keer wordt een woord gekozen uit de opties na het laatste woord." style="display:block; width:100%; max-width:940px; height:auto; margin:0 0 24px; border:1px solid #e4e4e4; border-radius:10px;"></p>
+      <h2>Meer context en meer tekst</h2>
+      <p class="intro">Met meer context passen de woorden beter bij elkaar. Maar een groepje van drie, vier of vijf woorden komt in je tekst maar heel af en toe voor. Is er na een context maar één optie, dan kan je bot alleen kopiëren wat er al staat. Dat heet <b>overfitting</b>: het model kent de trainingsdata uit zijn hoofd, maar kan niets nieuws. Als vuistregel heb je per extra woord context ongeveer 10 keer zoveel tekst nodig. Het voorbeeld over wielrennen heeft ongeveer 200.000 woorden. In de tekst van je bot zijn de gekopieerde woorden oranje: daar had hij maar één keuze.</p>
+      <h2>Het verschil met ChatGPT</h2>
+      <p class="intro">ChatGPT werkt met hetzelfde idee: het volgende woord voorspellen. Maar het heeft een veel groter deel van het internet gelezen, en het kijkt niet alleen naar de laatste paar woorden. Met <b>attention</b> kan het bij elk woord terugkijken naar alle woorden ervoor, ook als die ver weg staan. Daardoor blijft een lange tekst samenhangend.</p>
+      <h2>De data</h2>
+      <p class="intro">Je bot haalt de artikelen op van <b>Wikipedia</b>, de vrije encyclopedie. Zet de titels precies zoals ze op nl.wikipedia.org staan. Een titel die niet bestaat, wordt overgeslagen en staat dan onder "Niet gevonden". Het ophalen van alle artikelen duurt een paar seconden.</p>
+      <div class="tip">Je programmeert in <code>sketch.js</code>: STAP 1 tot en met 4 in praktijkles 5. Praktijkles 6 gebruik je om alles af te maken, je bot te onderzoeken, je eigen onderwerp te kiezen en je logboek in te vullen.</div>
       <div id="sketch" class="kaart breed"></div>
     </div>
   </main>

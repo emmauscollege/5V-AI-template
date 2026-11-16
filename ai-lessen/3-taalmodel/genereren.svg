@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 334" width="940" height="334" font-family="Work Sans, Helvetica, Arial, sans-serif">
+<style>rect{stroke:#9a9a9a} .kop{font-size:15px;fill:#4a4a4a} .klein{font-size:12px;fill:#666} .tekst{font-size:13px;fill:#4a4a4a} text.w{font-size:13px;text-anchor:middle;fill:#222} text.n{font-size:10px;text-anchor:middle;fill:#999} .code{font-family:Consolas, Menlo, monospace;font-size:13px;fill:#222}</style>
+<rect width="940" height="334" fill="#fff" stroke="none"/>
+<text class="kop" x="20" y="30">Tekst genereren met contextLengte 1</text>
+<text class="klein" x="20" y="62">tekst</text>
+<text class="klein" x="440" y="62">context</text>
+<text class="klein" x="600" y="62">opties</text>
+<text class="klein" x="810" y="62">willekeurig gekozen</text>
+<rect x="10" y="76" width="920" height="40" rx="6" fill="#f8f8f8" style="stroke:#e4e4e4"/>
+<text class="code" x="20" y="101">["de", "tour"]</text>
+<text class="code" x="440" y="101">["tour"]</text>
+<text class="code" x="600" y="101">["start", "eindigt"]</text>
+<rect x="810" y="84" width="70" height="24" rx="4" fill="#f2f9e6" style="stroke:#7dc903;stroke-width:2"/><text class="code" x="820" y="101">"start"</text>
+<rect x="10" y="126" width="920" height="40" rx="6" fill="#f8f8f8" style="stroke:#e4e4e4"/>
+<text class="code" x="20" y="151">["de", "tour", "start"]</text>
+<text class="code" x="440" y="151">["start"]</text>
+<text class="code" x="600" y="151">["in"]</text>
+<rect x="810" y="134" width="46" height="24" rx="4" fill="#f2f9e6" style="stroke:#7dc903;stroke-width:2"/><text class="code" x="820" y="151">"in"</text>
+<rect x="10" y="176" width="920" height="40" rx="6" fill="#f8f8f8" style="stroke:#e4e4e4"/>
+<text class="code" x="20" y="201">["de", "tour", "start", "in"]</text>
+<text class="code" x="440" y="201">["in"]</text>
+<text class="code" x="600" y="201">["rotterdam", "parijs"]</text>
+<rect x="810" y="184" width="78" height="24" rx="4" fill="#f2f9e6" style="stroke:#7dc903;stroke-width:2"/><text class="code" x="820" y="201">"parijs"</text>
+<rect x="10" y="226" width="920" height="40" rx="6" fill="#f8f8f8" style="stroke:#e4e4e4"/>
+<text class="code" x="20" y="251">["de", "tour", "start", "in", "parijs"]</text>
+<text class="code" x="440" y="251">["parijs"]</text>
+<text class="code" x="600" y="251">["."]</text>
+<rect x="810" y="234" width="38" height="24" rx="4" fill="#f2f9e6" style="stroke:#7dc903;stroke-width:2"/><text class="code" x="820" y="251">"."</text>
+<text class="tekst" x="20" y="292">Elke ronde (voegWoordToe): pak de context, zoek de opties, kies er willekeurig één en zet die achter de tekst. Dan opnieuw.</text>
+<text class="tekst" x="20" y="314">Na "in" koos de bot "parijs". Zo ontstaat "De tour start in Parijs.": een zin die niet in de tekst staat, en ook niet klopt.</text>
+</svg>

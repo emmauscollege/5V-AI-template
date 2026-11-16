@@ -38,12 +38,12 @@ Naam:
 
 Mijn onderwerp en artikelen:
 
-1. Waarom maakt een bigram-model wel losse goede woordparen, maar geen goede zinnen?
+1. Bij contextLengte 1 passen de woorden twee aan twee goed bij elkaar, maar klopt de hele tekst vaak niet. Hoe komt dat?
 
-2. Wat gebeurt er als n groter wordt? Hoeveel woorden heb jij, en bij welke n gaat je bot kopiëren? Leg uit met de woorden overfitting en data.
+2. Hoeveel van de 50 woorden zijn oranje bij contextLengte 1, 2, 3, 4 en 5? Leg het verschil uit met de woorden overfitting en trainingsdata.
 
-3. Waarom kan jouw bot iets "zeggen" dat niet waar is, terwijl hij alleen bestaande tekst heeft gelezen?
+3. Waarom kan jouw bot iets "zeggen" dat niet waar is, terwijl hij alleen bestaande tekst heeft gelezen? Geef een voorbeeld uit een tekst van je bot.
 
-4. Wat lost een transformer met attention op dat jouw model niet kan?
+4. Wat kan ChatGPT met attention dat jouw bot niet kan?
 
 5. Vergelijk jouw bot met die van een klasgenoot met een ander onderwerp. Wat is het effect van de trainingsteksten? Koppel dit aan bias.

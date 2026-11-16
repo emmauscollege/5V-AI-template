@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 320" width="940" height="320" font-family="Work Sans, Helvetica, Arial, sans-serif">
+<style>rect{stroke:#9a9a9a} .kop{font-size:15px;fill:#4a4a4a} .klein{font-size:12px;fill:#666} .tekst{font-size:13px;fill:#4a4a4a} text.w{font-size:13px;text-anchor:middle;fill:#222} text.n{font-size:10px;text-anchor:middle;fill:#999} .code{font-family:Consolas, Menlo, monospace;font-size:13px;fill:#222}</style>
+<rect width="940" height="320" fill="#fff" stroke="none"/>
+<text class="kop" x="20" y="30">1. de tekst uit de artikelen</text>
+<rect x="20" y="44" width="900" height="40" rx="6" fill="#f8f8f8" stroke="none"/>
+<text class="tekst" x="36" y="69">De Tour start in Rotterdam. De Tour eindigt in Parijs.</text>
+<text class="kop" x="20" y="124">2. de lijst woorden: kleine letters, leestekens tellen als woord</text>
+<rect x="25" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="60.0" y="160">de</text><text class="n" x="60.0" y="184">0</text>
+<rect x="99" y="140" width="70" height="30" rx="4" fill="#f2f9e6" style="stroke:#7dc903;stroke-width:2"/><text class="w" x="134.0" y="160">tour</text><text class="n" x="134.0" y="184">1</text>
+<rect x="173" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="208.0" y="160">start</text><text class="n" x="208.0" y="184">2</text>
+<rect x="247" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="282.0" y="160">in</text><text class="n" x="282.0" y="184">3</text>
+<rect x="321" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="356.0" y="160">rotterdam</text><text class="n" x="356.0" y="184">4</text>
+<rect x="395" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="430.0" y="160">.</text><text class="n" x="430.0" y="184">5</text>
+<rect x="469" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="504.0" y="160">de</text><text class="n" x="504.0" y="184">6</text>
+<rect x="543" y="140" width="70" height="30" rx="4" fill="#f2f9e6" style="stroke:#7dc903;stroke-width:2"/><text class="w" x="578.0" y="160">tour</text><text class="n" x="578.0" y="184">7</text>
+<rect x="617" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="652.0" y="160">eindigt</text><text class="n" x="652.0" y="184">8</text>
+<rect x="691" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="726.0" y="160">in</text><text class="n" x="726.0" y="184">9</text>
+<rect x="765" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="800.0" y="160">parijs</text><text class="n" x="800.0" y="184">10</text>
+<rect x="839" y="140" width="70" height="30" rx="4" fill="#f8f8f8" style="stroke:#c8c8c8;stroke-width:2"/><text class="w" x="874.0" y="160">.</text><text class="n" x="874.0" y="184">11</text>
+<text class="klein" x="25" y="210">het kleine getal is de plek in de lijst: woorden[0] = "de", woorden[4] = "rotterdam", woorden.length = 12</text>
+<text class="kop" x="20" y="250">3. tellen</text>
+<text class="code" x="20" y="276">tel(woorden, "tour")  geeft  2</text>
+<text class="klein" x="20" y="298">"tour" staat op plek 1 en plek 7 (groen). De bot weet niet wat een tour is: hij kan alleen woorden vergelijken en tellen.</text>
+</svg>

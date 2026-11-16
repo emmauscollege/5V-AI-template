@@ -4,7 +4,7 @@ Deze repo is onderdeel van het vak informatica op het Emmauscollege Rotterdam.
 
 # AI & Machine Learning
 
-In deze repo bouw je zelf de algoritmes uit de theorielessen over kunstmatige intelligentie. Je begint met zelfgeschreven regels en eindigt met een netwerk dat jouw handschrift herkent en een bot die jouw zinnen afmaakt. Alles is geschreven in JavaScript met [p5.js](https://p5js.org/).
+In deze repo bouw je zelf de algoritmes uit de theorielessen over kunstmatige intelligentie. Je begint met zelfgeschreven regels en eindigt met een netwerk dat jouw handschrift herkent en een bot die zelf tekst schrijft. Alles is geschreven in JavaScript met [p5.js](https://p5js.org/).
 
 ## Projecten
 
@@ -12,7 +12,7 @@ In deze repo bouw je zelf de algoritmes uit de theorielessen over kunstmatige in
 |---|---|---|---|
 | 1. Van regels naar leren | `1-regels-en-buren` | 1 en 2 | Voorspel het profiel van een leerling met regels, k-nearest neighbours, een perceptron en een klein netwerk. |
 | 2. Een eigen CNN | `2-cnn` | 3 en 4 | Programmeer een drempel, filters en pooling, bouw een netwerk dat handgeschreven cijfers herkent en test het met je eigen tekening of webcam. |
-| 3. Je eigen taalbot | `3-taalmodel` | 5 en 6 | Een taalmodel op Wikipedia-artikelen over jouw onderwerp, met autocomplete. |
+| 3. Je eigen taalbot | `3-taalmodel` | 5 en 6 | Een taalmodel op Wikipedia-artikelen over jouw onderwerp: laat hem zelf tekst schrijven en onderzoek hoe goed hij is. |
 
 ## Starten
 

@@ -8,18 +8,11 @@ function tel(lijst, woord) {
   return aantal;
 }
 
-// Versie van les 2 (STAP 5b), werkt voor elke n
 function volgendeWoorden(context) {
   let opties = [];
-  for (let i = 0; i < woorden.length - n; i++) {
-    let klopt = true;
-    for (let j = 0; j < n; j++) {
-      if (woorden[i + j] !== context[j]) {
-        klopt = false;
-      }
-    }
-    if (klopt) {
-      opties.push(woorden[i + n]);
+  for (let plek = 0; plek < woorden.length - contextLengte; plek++) {
+    if (pastOpPlek(plek, context)) {
+      opties.push(woorden[plek + contextLengte]);
     }
   }
   return opties;
@@ -28,48 +21,16 @@ function volgendeWoorden(context) {
 function kiesVolgend(context) {
   let opties = volgendeWoorden(context);
   if (opties.length === 0) {
-    return "";
+    return GEEN_WOORD;
   }
   let plek = floor(random(opties.length));
   return opties[plek];
 }
 
-function genereer(zin, aantal) {
-  for (let i = 0; i < aantal; i++) {
-    let context = laatsteWoorden(zin, n);
-    let volgend = kiesVolgend(context);
-    if (volgend === "") {
-      break;
-    }
-    zin.push(volgend);
+function voegWoordToe(tekst) {
+  let context = laatsteWoorden(tekst, contextLengte);
+  let woord = kiesVolgend(context);
+  if (woord !== GEEN_WOORD) {
+    tekst.push(woord);
   }
-  return zin;
-}
-
-function meestVoorkomend(opties, alGekozen) {
-  let beste = "";
-  let besteAantal = 0;
-  for (let i = 0; i < opties.length; i++) {
-    let woord = opties[i];
-    if (tel(alGekozen, woord) === 0) {
-      let aantal = tel(opties, woord);
-      if (aantal > besteAantal) {
-        beste = woord;
-        besteAantal = aantal;
-      }
-    }
-  }
-  return beste;
-}
-
-function top3(context) {
-  let opties = volgendeWoorden(context);
-  let gekozen = [];
-  for (let i = 0; i < 3; i++) {
-    let woord = meestVoorkomend(opties, gekozen);
-    if (woord !== "") {
-      gekozen.push(woord);
-    }
-  }
-  return gekozen;
 }
